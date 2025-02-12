@@ -121,7 +121,8 @@
 
         <ul class="sub-nav collapse" id="sidebar-setting-haji">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('setting-haji.index') }}">
+                <a class="nav-link {{ activeRoute(route('biaya-registrasi.index')) }}"
+                    href="{{ route('biaya-registrasi.index') }}">
                     <i class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                             fill="currentColor">

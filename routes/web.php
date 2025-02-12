@@ -2,6 +2,7 @@
 
 // Controllers
 
+use App\Http\Controllers\BiayaRegistrasiController;
 use App\Http\Controllers\DataOpsiController;
 use App\Http\Controllers\DataPenggunaController;
 use App\Http\Controllers\HomeController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Security\RoleController;
 use App\Http\Controllers\Security\PermissionController;
 use App\Http\Controllers\SettingHajiController;
 use App\Http\Controllers\UserController;
+use App\Models\BiayaRegistrasi;
 use Illuminate\Support\Facades\Artisan;
 // Packages
 use Illuminate\Support\Facades\Route;
@@ -42,7 +44,10 @@ Route::prefix('pusat-data')->group(function () {
     Route::resource('data-pengguna', DataPenggunaController::class);
     Route::resource('data-opsi', DataOpsiController::class);
     Route::resource('jenis-opsi', JenisOpsiController::class);
-    Route::resource('setting-haji', SettingHajiController::class);
+});
+
+Route::prefix('setting-haji')->group(function () {
+    Route::resource('biaya-registrasi', BiayaRegistrasiController::class);
 });
 
 

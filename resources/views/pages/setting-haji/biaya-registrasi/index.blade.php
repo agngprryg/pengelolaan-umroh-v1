@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h3 class="mb-2">Data Jenis Opsi</h3>
+                            <h3 class="mb-2">Data Biaya Registrasi</h3>
                         </div>
                     </div>
 
@@ -19,29 +19,32 @@
                             </div>
                         @endif
 
-                        <div class="flex mb-4">
-                            <a href="{{ route('data-opsi.index') }}" class="btn btn-primary">Kembali</a>
-                            <a href="{{ route('jenis-opsi.create') }}" class="btn btn-primary">Tambah Data</a>
+                        <div class="mb-4">
+                            <a href="{{ route('biaya-registrasi.create') }}" class="btn btn-primary">Tambah Data</a>
                         </div>
 
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nama</th>
-                                    <th>Status</th>
+                                    <th>Tahun</th>
+                                    <th>Jumlah Biaya</th>
+                                    <th>Rincian Biaya</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($jenis_opsi as $d)
+                                @foreach ($biaya_registrasi as $br)
                                     <tr>
                                         <td> {{ $loop->iteration }} </td>
-                                        <td> {{ $d->nama }} </td>
-                                        <td> {{ $d->status }} </td>
+                                        <td> {{ $br->tahun }} </td>
+                                        <td> {{ $br->jumlah_biaya }} </td>
+                                        <td> {{ $br->rincian_biaya }} </td>
                                         <td>
-                                            <form action="{{ route('jenis-opsi.destroy', $d->id) }}" method="POST"
-                                                style="display:inline;">
+                                            <a href="{{ route('biaya-registrasi.show', $br->id) }}"
+                                                class="btn btn-warning btn-sm">Edit</a>
+                                            <form action="{{ route('biaya-registrasi.destroy', $br->id) }}"
+                                                method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm"
