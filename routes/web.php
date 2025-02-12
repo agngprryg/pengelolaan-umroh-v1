@@ -1,25 +1,12 @@
 <?php
 
 // Controllers
-
-use App\Http\Controllers\AturStokController;
-use App\Http\Controllers\CabangController;
-use App\Http\Controllers\DistributorController;
-use App\Http\Controllers\GudangController;
+use App\Http\Controllers\DataPenggunaController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\ManagerController;
-use App\Http\Controllers\MerekController;
-use App\Http\Controllers\OwnerController;
-use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\Security\RolePermission;
 use App\Http\Controllers\Security\RoleController;
 use App\Http\Controllers\Security\PermissionController;
-use App\Http\Controllers\StokGudangController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\VariasiController;
-use App\Models\Gudang;
 use Illuminate\Support\Facades\Artisan;
 // Packages
 use Illuminate\Support\Facades\Route;
@@ -46,25 +33,9 @@ Route::get('/', [HomeController::class, 'uisheet'])->name('uisheet');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 
-Route::prefix('produk')->group(function () {
-    Route::resource('list-produk', ProdukController::class);
-    Route::resource('merek', MerekController::class);
-    Route::resource('distributor', DistributorController::class);
-    Route::resource('variasi', VariasiController::class);
-    Route::resource('kategori', KategoriController::class);
-    Route::resource('satuan', SatuanController::class);
-    Route::resource('stok-gudang', StokGudangController::class);
-});
-
-Route::prefix('role')->group(function () {
-    Route::resource('owner', OwnerController::class);
-    Route::resource('gudang', GudangController::class);
-    Route::resource('cabang', CabangController::class);
-    Route::resource('manager', ManagerController::class);
-});
 
 Route::prefix('pusat-data')->group(function () {
-    Route::resource('data-pengguna', OwnerController::class);
+    Route::resource('data-pengguna', DataPenggunaController::class);
 });
 
 

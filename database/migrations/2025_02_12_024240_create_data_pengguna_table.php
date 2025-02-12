@@ -15,6 +15,12 @@ class CreateDataPenggunaTable extends Migration
     {
         Schema::create('data_pengguna', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_role')->constrained('role_data_pengguna')->onDelete('cascade');
+            $table->string('username');
+            $table->string('password');
+            $table->string('nama');
+            $table->string('alamat');
+            $table->string('no_telepon');
             $table->timestamps();
         });
     }

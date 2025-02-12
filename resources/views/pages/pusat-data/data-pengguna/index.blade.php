@@ -19,25 +19,45 @@
                             </div>
                         @endif
 
+                        <div class="mb-4">
+                            <a href="{{ route('data-pengguna.create') }}" class="btn btn-primary">Tambah Pengguna</a>
+                        </div>
+
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nama Barang</th>
-                                    <th>Nama Gudang</th>
-                                    <th>Stok</th>
+                                    <th>Username</th>
+                                    <th>Nama</th>
+                                    <th>Alamat</th>
+                                    <th>No Telepon</th>
+                                    <th>Role</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @foreach ($data_penggunas as $data_pengguna)
+                                    <tr>
+                                        <td> {{ $loop->iteration }} </td>
+                                        <td> {{ $data_pengguna->username }} </td>
+                                        <td> {{ $data_pengguna->nama_pengguna }} </td>
+                                        <td> {{ $data_pengguna->alamat }} </td>
+                                        <td> {{ $data_pengguna->no_telepon }} </td>
+                                        <td> {{ $data_pengguna->role_data_pengguna->nama_role }} </td>
+                                        <td>
+                                            <a href="{{ route('data-pengguna.show', $data_pengguna->id) }}"
+                                                class="btn btn-warning btn-sm">Edit</a>
+                                            <form action="{{ route('data-pengguna.destroy', $data_pengguna->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('Apakah Anda yakin?')">Hapus</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
                             </tbody>
                         </table>
                     </div>
