@@ -1,11 +1,15 @@
 <?php
 
 // Controllers
+
+use App\Http\Controllers\DataOpsiController;
 use App\Http\Controllers\DataPenggunaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JenisOpsiController;
 use App\Http\Controllers\Security\RolePermission;
 use App\Http\Controllers\Security\RoleController;
 use App\Http\Controllers\Security\PermissionController;
+use App\Http\Controllers\SettingHajiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan;
 // Packages
@@ -36,9 +40,10 @@ Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::prefix('pusat-data')->group(function () {
     Route::resource('data-pengguna', DataPenggunaController::class);
+    Route::resource('data-opsi', DataOpsiController::class);
+    Route::resource('jenis-opsi', JenisOpsiController::class);
+    Route::resource('setting-haji', SettingHajiController::class);
 });
-
-
 
 
 
