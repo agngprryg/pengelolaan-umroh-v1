@@ -8,6 +8,7 @@ use App\Http\Controllers\DataPenggunaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JenisOpsiController;
 use App\Http\Controllers\KelengkapanRegistrasiController;
+use App\Http\Controllers\RekeningBankController;
 use App\Http\Controllers\Security\RolePermission;
 use App\Http\Controllers\Security\RoleController;
 use App\Http\Controllers\Security\PermissionController;
@@ -49,6 +50,7 @@ Route::prefix('pusat-data')->group(function () {
 Route::prefix('setting-haji')->group(function () {
     Route::resource('biaya-registrasi', BiayaRegistrasiController::class);
     Route::resource('kelengkapan-registrasi', KelengkapanRegistrasiController::class);
+    Route::resource('rekening-bank', RekeningBankController::class);
 });
 
 
