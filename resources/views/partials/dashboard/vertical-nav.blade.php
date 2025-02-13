@@ -90,7 +90,7 @@
     </li>
 
     {{-- Setting Haji --}}
-    <li class="nav-item">
+    <li class="nav-item mb-2">
         <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-setting-haji" role="button" aria-expanded="false"
             aria-controls="sidebar-setting-haji">
             <i class="icon">
@@ -164,8 +164,101 @@
                     <span class="item-name">Rekening Bank</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ activeRoute(route('bank-penerima-setoran.index')) }}"
+                    href="{{ route('bank-penerima-setoran.index') }}">
+                    <i class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <g>
+                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                            </g>
+                        </svg>
+                    </i>
+                    <span class="item-name">Data BPS</span>
+                </a>
+            </li>
         </ul>
     </li>
+
+    {{-- Setting Umroh
+    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-setting-umroh" role="button"
+            aria-expanded="false" aria-controls="sidebar-setting-umroh">
+            <i class="icon">
+                <svg class="icon-32" width="24" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path opacity="0.4"
+                        d="M10.0833 15.958H3.50777C2.67555 15.958 2 16.6217 2 17.4393C2 18.2559 2.67555 18.9207 3.50777 18.9207H10.0833C10.9155 18.9207 11.5911 18.2559 11.5911 17.4393C11.5911 16.6217 10.9155 15.958 10.0833 15.958Z"
+                        fill="currentColor"></path>
+                    <path opacity="0.4"
+                        d="M22.0001 6.37867C22.0001 5.56214 21.3246 4.89844 20.4934 4.89844H13.9179C13.0857 4.89844 12.4102 5.56214 12.4102 6.37867C12.4102 7.1963 13.0857 7.86 13.9179 7.86H20.4934C21.3246 7.86 22.0001 7.1963 22.0001 6.37867Z"
+                        fill="currentColor"></path>
+                    <path
+                        d="M8.87774 6.37856C8.87774 8.24523 7.33886 9.75821 5.43887 9.75821C3.53999 9.75821 2 8.24523 2 6.37856C2 4.51298 3.53999 3 5.43887 3C7.33886 3 8.87774 4.51298 8.87774 6.37856Z"
+                        fill="currentColor"></path>
+                    <path
+                        d="M21.9998 17.3992C21.9998 19.2648 20.4609 20.7777 18.5609 20.7777C16.6621 20.7777 15.1221 19.2648 15.1221 17.3992C15.1221 15.5325 16.6621 14.0195 18.5609 14.0195C20.4609 14.0195 21.9998 15.5325 21.9998 17.3992Z"
+                        fill="currentColor"></path>
+                </svg>
+            </i>
+            <span class="item-name">Setting umroh</span>
+            <i class="right-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </i>
+        </a>
+
+        <ul class="sub-nav collapse" id="sidebar-setting-umroh">
+            <li class="nav-item">
+                <a class="nav-link {{ activeRoute(route('biaya-registrasi.index')) }}"
+                    href="{{ route('biaya-registrasi.index') }}">
+                    <i class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <g>
+                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                            </g>
+                        </svg>
+                    </i>
+                    <span class="item-name">Biaya Registrasi</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ activeRoute(route('kelengkapan-registrasi.index')) }}"
+                    href="{{ route('kelengkapan-registrasi.index') }}">
+                    <i class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <g>
+                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                            </g>
+                        </svg>
+                    </i>
+                    <span class="item-name">Kelengkapan Registrasi</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ activeRoute(route('rekening-bank.index')) }}"
+                    href="{{ route('rekening-bank.index') }}">
+                    <i class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <g>
+                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                            </g>
+                        </svg>
+                    </i>
+                    <span class="item-name">Rekening Bank</span>
+                </a>
+            </li>
+        </ul>
+    </li> --}}
 
 </ul>
 </li>

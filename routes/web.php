@@ -2,6 +2,7 @@
 
 // Controllers
 
+use App\Http\Controllers\BankPenerimaSetoranController;
 use App\Http\Controllers\BiayaRegistrasiController;
 use App\Http\Controllers\DataOpsiController;
 use App\Http\Controllers\DataPenggunaController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Security\RoleController;
 use App\Http\Controllers\Security\PermissionController;
 use App\Http\Controllers\SettingHajiController;
 use App\Http\Controllers\UserController;
+use App\Models\BankPenerimaSetoran;
 use Illuminate\Support\Facades\Artisan;
 // Packages
 use Illuminate\Support\Facades\Route;
@@ -51,6 +53,7 @@ Route::prefix('setting-haji')->group(function () {
     Route::resource('biaya-registrasi', BiayaRegistrasiController::class);
     Route::resource('kelengkapan-registrasi', KelengkapanRegistrasiController::class);
     Route::resource('rekening-bank', RekeningBankController::class);
+    Route::resource('bank-penerima-setoran', BankPenerimaSetoranController::class);
 });
 
 
