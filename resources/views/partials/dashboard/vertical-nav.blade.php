@@ -182,7 +182,7 @@
         </ul>
     </li>
 
-    {{-- Setting Umroh
+    {{-- Setting Umroh --}}
     <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-setting-umroh" role="button"
             aria-expanded="false" aria-controls="sidebar-setting-umroh">
@@ -213,9 +213,10 @@
         </a>
 
         <ul class="sub-nav collapse" id="sidebar-setting-umroh">
+
             <li class="nav-item">
-                <a class="nav-link {{ activeRoute(route('biaya-registrasi.index')) }}"
-                    href="{{ route('biaya-registrasi.index') }}">
+                <a class="nav-link {{ activeRoute(route('paket-umroh.index')) }}"
+                    href="{{ route('paket-umroh.index') }}">
                     <i class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                             fill="currentColor">
@@ -224,41 +225,12 @@
                             </g>
                         </svg>
                     </i>
-                    <span class="item-name">Biaya Registrasi</span>
+                    <span class="item-name">Paket Umroh</span>
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ activeRoute(route('kelengkapan-registrasi.index')) }}"
-                    href="{{ route('kelengkapan-registrasi.index') }}">
-                    <i class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                            fill="currentColor">
-                            <g>
-                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                            </g>
-                        </svg>
-                    </i>
-                    <span class="item-name">Kelengkapan Registrasi</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link {{ activeRoute(route('rekening-bank.index')) }}"
-                    href="{{ route('rekening-bank.index') }}">
-                    <i class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                            fill="currentColor">
-                            <g>
-                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                            </g>
-                        </svg>
-                    </i>
-                    <span class="item-name">Rekening Bank</span>
-                </a>
-            </li>
         </ul>
-    </li> --}}
+    </li>
 
 </ul>
 </li>

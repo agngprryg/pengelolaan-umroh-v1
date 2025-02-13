@@ -9,6 +9,7 @@ use App\Http\Controllers\DataPenggunaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JenisOpsiController;
 use App\Http\Controllers\KelengkapanRegistrasiController;
+use App\Http\Controllers\PaketUmrohController;
 use App\Http\Controllers\RekeningBankController;
 use App\Http\Controllers\Security\RolePermission;
 use App\Http\Controllers\Security\RoleController;
@@ -54,6 +55,10 @@ Route::prefix('setting-haji')->group(function () {
     Route::resource('kelengkapan-registrasi', KelengkapanRegistrasiController::class);
     Route::resource('rekening-bank', RekeningBankController::class);
     Route::resource('bank-penerima-setoran', BankPenerimaSetoranController::class);
+});
+
+Route::prefix('setting-haji')->group(function () {
+    Route::resource('paket-umroh', PaketUmrohController::class);
 });
 
 
