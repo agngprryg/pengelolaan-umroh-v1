@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KelengkapanRegistrasi;
+use App\Models\KelengkapanRegistrasiHaji;
 use Illuminate\Http\Request;
 
-class KelengkapanRegistrasiController extends Controller
+class KelengkapanRegistrasiHajiController extends Controller
 {
     public function index()
     {
-        $data = KelengkapanRegistrasi::all();
+        $data = KelengkapanRegistrasiHaji::all();
         return view('pages.setting-haji.kelengkapan-registrasi.index', compact('data'));
     }
 
@@ -20,26 +20,26 @@ class KelengkapanRegistrasiController extends Controller
 
     public function store(Request $request)
     {
-        KelengkapanRegistrasi::create($request->all());
+        KelengkapanRegistrasiHaji::create($request->all());
         return redirect()->route('kelengkapan-registrasi.index')->with('success', 'data berhasil di tambahkan');
     }
 
     public function show($id)
     {
-        $data = KelengkapanRegistrasi::findOrFail($id);
+        $data = KelengkapanRegistrasiHaji::findOrFail($id);
         return view('pages.setting-haji.kelengkapan-registrasi.edit', compact('data'));
     }
 
     public function update(Request $request, $id)
     {
-        $data = KelengkapanRegistrasi::findOrFail($id);
+        $data = KelengkapanRegistrasiHaji::findOrFail($id);
         $data->update($request->all());
         return redirect()->route('kelengkapan-registrasi.index')->with('success', 'data berhasil di update');
     }
 
     public function destroy($id)
     {
-        $data = KelengkapanRegistrasi::findOrFail($id);
+        $data = KelengkapanRegistrasiHaji::findOrFail($id);
         $data->delete();
         return redirect()->route('kelengkapan-registrasi.index')->with('success', 'data berhasil di hapus');
     }
