@@ -11,6 +11,7 @@ use App\Http\Controllers\JadwalKeberangkatanController;
 use App\Http\Controllers\JenisOpsiController;
 use App\Http\Controllers\KelengkapanRegistrasiHajiController;
 use App\Http\Controllers\KelengkapanRegistrasiUmrohController;
+use App\Http\Controllers\MerchandiseUmrohController;
 use App\Http\Controllers\PaketUmrohController;
 use App\Http\Controllers\RekeningBankController;
 use App\Http\Controllers\Security\RolePermission;
@@ -64,6 +65,7 @@ Route::prefix('setting-umroh')->group(function () {
     Route::resource('paket-umroh', PaketUmrohController::class);
     Route::resource('jadwal-keberangkatan', JadwalKeberangkatanController::class);
     Route::resource('kelengkapan-registrasi-umroh', KelengkapanRegistrasiUmrohController::class);
+    Route::resource('merchandise-umroh', MerchandiseUmrohController::class);
 });
 
 
