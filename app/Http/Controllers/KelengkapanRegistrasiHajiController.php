@@ -21,7 +21,7 @@ class KelengkapanRegistrasiHajiController extends Controller
     public function store(Request $request)
     {
         KelengkapanRegistrasiHaji::create($request->all());
-        return redirect()->route('kelengkapan-registrasi.index')->with('success', 'data berhasil di tambahkan');
+        return redirect()->route('kelengkapan-registrasi-haji.index')->with('success', 'data berhasil di tambahkan');
     }
 
     public function show($id)
@@ -34,13 +34,13 @@ class KelengkapanRegistrasiHajiController extends Controller
     {
         $data = KelengkapanRegistrasiHaji::findOrFail($id);
         $data->update($request->all());
-        return redirect()->route('kelengkapan-registrasi.index')->with('success', 'data berhasil di update');
+        return redirect()->route('kelengkapan-registrasi-haji.index')->with('success', 'data berhasil di update');
     }
 
     public function destroy($id)
     {
         $data = KelengkapanRegistrasiHaji::findOrFail($id);
         $data->delete();
-        return redirect()->route('kelengkapan-registrasi.index')->with('success', 'data berhasil di hapus');
+        return redirect()->route('kelengkapan-registrasi-haji.index')->with('success', 'data berhasil di hapus');
     }
 }

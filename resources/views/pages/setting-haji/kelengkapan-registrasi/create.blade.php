@@ -10,7 +10,7 @@
                     </div>
 
                     <div class="mt-5 container">
-                        <form action="{{ route('kelengkapan-registrasi.store') }}" method="POST"
+                        <form action="{{ route('kelengkapan-registrasi-haji.store') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
 

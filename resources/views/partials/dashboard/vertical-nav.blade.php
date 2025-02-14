@@ -136,8 +136,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ activeRoute(route('kelengkapan-registrasi.index')) }}"
-                    href="{{ route('kelengkapan-registrasi.index') }}">
+                <a class="nav-link {{ activeRoute(route('kelengkapan-registrasi-haji.index')) }}"
+                    href="{{ route('kelengkapan-registrasi-haji.index') }}">
                     <i class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                             fill="currentColor">

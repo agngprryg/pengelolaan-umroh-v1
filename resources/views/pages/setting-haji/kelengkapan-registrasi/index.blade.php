@@ -20,7 +20,7 @@
                         @endif
 
                         <div class="mb-4">
-                            <a href="{{ route('kelengkapan-registrasi.create') }}" class="btn btn-primary">Tambah
+                            <a href="{{ route('kelengkapan-registrasi-haji.create') }}" class="btn btn-primary">Tambah
                                 Data</a>
                         </div>
 
@@ -40,9 +40,9 @@
                                         <td> {{ $d->urutan_tampil }} </td>
                                         <td> {{ $d->nama_dokumen }} </td>
                                         <td>
-                                            <a href="{{ route('kelengkapan-registrasi.show', $d->id) }}"
+                                            <a href="{{ route('kelengkapan-registrasi-haji.show', $d->id) }}"
                                                 class="btn btn-warning btn-sm">Edit</a>
-                                            <form action="{{ route('kelengkapan-registrasi.destroy', $d->id) }}"
+                                            <form action="{{ route('kelengkapan-registrasi-haji.destroy', $d->id) }}"
                                                 method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')

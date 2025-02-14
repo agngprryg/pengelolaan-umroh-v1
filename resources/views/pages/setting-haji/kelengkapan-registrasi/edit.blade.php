@@ -10,7 +10,7 @@
                     </div>
 
                     <div class="mt-5 container">
-                        <form action="{{ route('kelengkapan-registrasi.update', $data->id) }}" method="POST"
+                        <form action="{{ route('kelengkapan-registrasi-haji.update', $data->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')

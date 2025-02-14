@@ -55,7 +55,7 @@ Route::prefix('pusat-data')->group(function () {
 
 Route::prefix('setting-haji')->group(function () {
     Route::resource('biaya-registrasi', BiayaRegistrasiController::class);
-    Route::resource('kelengkapan-registrasi', KelengkapanRegistrasiHajiController::class);
+    Route::resource('kelengkapan-registrasi-haji', KelengkapanRegistrasiHajiController::class);
     Route::resource('rekening-bank', RekeningBankController::class);
     Route::resource('bank-penerima-setoran', BankPenerimaSetoranController::class);
 });
