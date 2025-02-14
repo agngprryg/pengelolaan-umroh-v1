@@ -7,6 +7,7 @@ use App\Http\Controllers\BiayaRegistrasiController;
 use App\Http\Controllers\DataOpsiController;
 use App\Http\Controllers\DataPenggunaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JadwalKeberangkatanController;
 use App\Http\Controllers\JenisOpsiController;
 use App\Http\Controllers\KelengkapanRegistrasiController;
 use App\Http\Controllers\PaketUmrohController;
@@ -57,8 +58,9 @@ Route::prefix('setting-haji')->group(function () {
     Route::resource('bank-penerima-setoran', BankPenerimaSetoranController::class);
 });
 
-Route::prefix('setting-haji')->group(function () {
+Route::prefix('setting-umroh')->group(function () {
     Route::resource('paket-umroh', PaketUmrohController::class);
+    Route::resource('jadwal-keberangkatan', JadwalKeberangkatanController::class);
 });
 
 
