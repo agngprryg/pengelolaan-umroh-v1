@@ -15,6 +15,8 @@ class CreateKelengkapanRegistrasiUmrohTable extends Migration
     {
         Schema::create('kelengkapan_registrasi_umroh', function (Blueprint $table) {
             $table->id();
+            $table->integer('urutan_tampil');
+            $table->string('nama_dokumen');
             $table->timestamps();
         });
     }
