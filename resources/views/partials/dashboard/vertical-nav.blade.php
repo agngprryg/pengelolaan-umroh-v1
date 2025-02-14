@@ -85,14 +85,28 @@
                 </a>
             </li>
 
+            <li class=" nav-item">
+                <a class="nav-link {{ activeRoute(route('data-agen.index')) }}" href="{{ route('data-agen.index') }}">
+                    <i class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                            <g>
+                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                            </g>
+                        </svg>
+                    </i>
+                    <i class="sidenav-mini-icon"> DA </i>
+                    <span class="item-name">Data Agen</span>
+                </a>
+            </li>
+
         </ul>
 
     </li>
 
     {{-- Setting Haji --}}
     <li class="nav-item mb-2">
-        <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-setting-haji" role="button" aria-expanded="false"
-            aria-controls="sidebar-setting-haji">
+        <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-setting-haji" role="button"
+            aria-expanded="false" aria-controls="sidebar-setting-haji">
             <i class="icon">
                 <svg class="icon-32" width="24" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
