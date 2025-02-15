@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataPengguna;
 use App\Models\JenisOpsi;
 use App\Models\PaketUmroh;
 use Illuminate\Http\Request;
@@ -24,7 +25,6 @@ class PaketUmrohController extends Controller
             ->data_opsi()
             ->where('status', 'aktif')
             ->get();
-        // return response($opsis->pluck('item_opsi'));
         return view('pages.setting-umroh.paket-umroh.create', compact('opsis'));
     }
 

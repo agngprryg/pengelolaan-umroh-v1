@@ -4,6 +4,7 @@
 
 use App\Http\Controllers\BankPenerimaSetoranController;
 use App\Http\Controllers\BiayaRegistrasiController;
+use App\Http\Controllers\CetakAmplopController;
 use App\Http\Controllers\DataAgenController;
 use App\Http\Controllers\DataOpsiController;
 use App\Http\Controllers\DataPenggunaController;
@@ -69,6 +70,10 @@ Route::prefix('setting-umroh')->group(function () {
     Route::resource('kelengkapan-registrasi-umroh', KelengkapanRegistrasiUmrohController::class);
     Route::resource('merchandise-umroh', MerchandiseUmrohController::class);
 });
+
+// Route::resource('cetak-amplop', CetakAmplopController::class);
+Route::get('/cetak-amplop', [CetakAmplopController::class, 'handle_search'])->name('cetak-amplop');
+Route::get('/export-pdf', [CetakAmplopController::class, 'export_pdf'])->name('export.pdf');
 
 
 
