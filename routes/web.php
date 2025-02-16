@@ -15,6 +15,7 @@ use App\Http\Controllers\KelengkapanRegistrasiHajiController;
 use App\Http\Controllers\KelengkapanRegistrasiUmrohController;
 use App\Http\Controllers\MerchandiseUmrohController;
 use App\Http\Controllers\PaketUmrohController;
+use App\Http\Controllers\RegistrasiHajiController;
 use App\Http\Controllers\RekeningBankController;
 use App\Http\Controllers\Security\RolePermission;
 use App\Http\Controllers\Security\RoleController;
@@ -71,9 +72,14 @@ Route::prefix('setting-umroh')->group(function () {
     Route::resource('merchandise-umroh', MerchandiseUmrohController::class);
 });
 
+
 // Route::resource('cetak-amplop', CetakAmplopController::class);
 Route::get('/cetak-amplop', [CetakAmplopController::class, 'handle_search'])->name('cetak-amplop');
 Route::get('/export-pdf', [CetakAmplopController::class, 'export_pdf'])->name('export.pdf');
+
+Route::prefix('haji')->group(function () {
+    Route::resource('registrasi-haji', RegistrasiHajiController::class);
+});
 
 
 
