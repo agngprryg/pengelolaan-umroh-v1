@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JenisOpsi;
 use App\Models\PembayaranHaji;
 use App\Models\RegistrasiHaji;
+use App\Models\RegistrasiUmroh;
 use Illuminate\Http\Request;
 
 class PembayaranHajiController extends Controller
@@ -23,7 +24,7 @@ class PembayaranHajiController extends Controller
             ->where('registrasi_haji_id', $id)
             ->firstOrFail();
 
-        // return response($registrasi);
+        return response($registrasi);
         $data = RegistrasiHaji::all();
         $jenis_pembayaran = JenisOpsi::where('nama', 'Jenis Pembayaran')
             ->first()
@@ -34,11 +35,19 @@ class PembayaranHajiController extends Controller
     }
 
 
-    public function pay(Request $request)
+    public function pay(Request $request, $id)
     {
 
+        $registrasi = PembayaranHaji::with('registrasi_haji.biaya_registrasi_haji')
+            ->where('registrasi_haji_id', $id)
+            ->firstOrFail();
+
+        $data = $registrasi->registrasi_haji->biaya_registrasi_haji->jumlah_biaya;
+
+        return response($data);
+
         // Hitung sisa pembayaran (misalnya, dari biaya registrasi - sudah bayar)
-        $sisaPembayaran = $request->sudah_bayar > 0 ? $request->sisa_pembayaran - $request->sudah_bayar : 0;
+        $sisaPembayaran = $request->sisa_pembayaran > 0 ? $request->sisa_pembayaran - $request->jumlah_uang : 0;
 
         // Hitung kembalian (jika jumlah uang lebih besar dari yang harus dibayar)
         $kembalian = $request->jumlah_uang - $request->sudah_bayar;
