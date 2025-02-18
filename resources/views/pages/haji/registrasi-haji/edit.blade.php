@@ -216,7 +216,7 @@
 
                             @foreach ($kelengkapan_registrasi as $k)
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="dokumen_kelengkapan[]"
+                                    <input class="form-check-input" type="checkbox" name="dokumen_kelengkapan"
                                         value="{{ $k->nama_dokumen }}" id="flexCheckDefault{{ $loop->index }}"
                                         {{ isset($data) && $data->dokumen_kelengkapan == $k->nama_dokumen ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexCheckDefault{{ $loop->index }}">

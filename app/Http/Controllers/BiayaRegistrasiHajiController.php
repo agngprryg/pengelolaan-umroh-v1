@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BiayaRegistrasi;
+use App\Models\BiayaRegistrasiHaji;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class BiayaRegistrasiController extends Controller
+class BiayaRegistrasiHajiController extends Controller
 {
     public function index()
     {
-        $biaya_registrasi = BiayaRegistrasi::all();
+        $biaya_registrasi = BiayaRegistrasiHaji::all();
         return view('pages.setting-haji.biaya-registrasi.index', compact('biaya_registrasi'));
     }
 
@@ -21,26 +21,26 @@ class BiayaRegistrasiController extends Controller
 
     public function store(Request $request)
     {
-        BiayaRegistrasi::create($request->all());
+        BiayaRegistrasiHaji::create($request->all());
         return redirect()->route('biaya-registrasi.index')->with('success', 'data berhasil ditambahkan');
     }
 
     public function show($id)
     {
-        $data = BiayaRegistrasi::findOrFail($id);
+        $data = BiayaRegistrasiHaji::findOrFail($id);
         return view('pages.setting-haji.biaya-registrasi.edit', compact('data'));
     }
 
     public function update(Request $request, $id)
     {
-        $data = BiayaRegistrasi::findOrFail($id);
+        $data = BiayaRegistrasiHaji::findOrFail($id);
         $data->update($request->all());
         return redirect()->route('biaya-registrasi.index')->with('success', 'data berhasil diupdate');
     }
 
     public function destroy($id)
     {
-        $data = BiayaRegistrasi::findOrFail($id);
+        $data = BiayaRegistrasiHaji::findOrFail($id);
         $data->delete();
         return redirect()->route('biaya-registrasi.index')->with('success', 'data berhasil dihapus');
     }

@@ -10,8 +10,10 @@ class RegistrasiHaji extends Model
     use HasFactory;
     protected $table = 'registrasi_haji';
     protected $fillable = [
+        'biaya_registrasi_haji_id',
         'no_registrasi',
         'tanggal_daftar',
+        'jenis_haji',
         'agen',
         'tahun_berangkat',
         'bps',
@@ -42,4 +44,14 @@ class RegistrasiHaji extends Model
     protected $casts = [
         'dokumen_kelengkapan' => 'array',
     ];
+
+    public function biaya_registrasi_haji()
+    {
+        return $this->belongsTo(BiayaRegistrasiHaji::class);
+    }
+
+    public function pembayaran_haji()
+    {
+        return $this->hasMany(PembayaranHaji::class, 'registrasi_haji_id');
+    }
 }

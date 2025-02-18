@@ -14,4 +14,9 @@ class PaketUmroh extends Model
         'fasilitas' => 'array',
         'harga' => 'array'
     ];
+
+    public function jadwal_keberangkatan()
+    {
+        return $this->hasMany(JadwalKeberangkatan::class, 'paket_umroh_id');
+    }
 }

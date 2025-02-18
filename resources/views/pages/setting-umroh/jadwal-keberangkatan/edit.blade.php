@@ -16,8 +16,8 @@
 
                             <div class="mb-3">
                                 <label for="nama_paket" class="form-label">Nama Paket</label>
-                                <input type="text" name="nama_paket" id="nama_paket" class="form-control"
-                                    value="{{ $data->nama_paket }}" required>
+                                <input type="text" class="form-control" value="{{ $data->paket_umroh->nama_paket }}"
+                                    readonly>
                             </div>
 
                             <div class="mb-3">

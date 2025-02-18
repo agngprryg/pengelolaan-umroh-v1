@@ -3,7 +3,7 @@
 // Controllers
 
 use App\Http\Controllers\BankPenerimaSetoranController;
-use App\Http\Controllers\BiayaRegistrasiController;
+use App\Http\Controllers\BiayaRegistrasiHajiController;
 use App\Http\Controllers\CetakAmplopController;
 use App\Http\Controllers\DataAgenController;
 use App\Http\Controllers\DataOpsiController;
@@ -15,7 +15,9 @@ use App\Http\Controllers\KelengkapanRegistrasiHajiController;
 use App\Http\Controllers\KelengkapanRegistrasiUmrohController;
 use App\Http\Controllers\MerchandiseUmrohController;
 use App\Http\Controllers\PaketUmrohController;
+use App\Http\Controllers\PembayaranHajiController;
 use App\Http\Controllers\RegistrasiHajiController;
+use App\Http\Controllers\RegistrasiUmrohController;
 use App\Http\Controllers\RekeningBankController;
 use App\Http\Controllers\Security\RolePermission;
 use App\Http\Controllers\Security\RoleController;
@@ -59,7 +61,7 @@ Route::prefix('pusat-data')->group(function () {
 });
 
 Route::prefix('setting-haji')->group(function () {
-    Route::resource('biaya-registrasi', BiayaRegistrasiController::class);
+    Route::resource('biaya-registrasi', BiayaRegistrasiHajiController::class);
     Route::resource('kelengkapan-registrasi-haji', KelengkapanRegistrasiHajiController::class);
     Route::resource('rekening-bank', RekeningBankController::class);
     Route::resource('bank-penerima-setoran', BankPenerimaSetoranController::class);
@@ -79,6 +81,14 @@ Route::get('/export-pdf', [CetakAmplopController::class, 'export_pdf'])->name('e
 
 Route::prefix('haji')->group(function () {
     Route::resource('registrasi-haji', RegistrasiHajiController::class);
+    Route::get('/pay/{id}', [PembayaranHajiController::class, 'show_pay'])->name('pembayaran-haji');
+    Route::post('/pay/{id}', [PembayaranHajiController::class, 'pay'])->name('pembayaran-haji');
+    Route::resource('pembayaran-haji', PembayaranHajiController::class);
+});
+
+Route::prefix('umroh')->group(function () {
+    Route::resource('registrasi-umroh', RegistrasiUmrohController::class);
+    Route::get('/get-paket-id/{id}', [RegistrasiUmrohController::class, 'get_paket_by_id']);
 });
 
 

@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h3 class="mb-2">Data Jadwal Keberangkatan</h3>
+                            <h3 class="mb-2">Data Calon Umroh</h3>
                         </div>
                     </div>
 
@@ -20,35 +20,36 @@
                         @endif
 
                         <div class="mb-4">
-                            <a href="{{ route('jadwal-keberangkatan.create') }}" class="btn btn-primary">Tambah
-                                Data</a>
+                            <a href="{{ route('registrasi-umroh.create') }}" class="btn btn-primary">Tambah Pengguna</a>
                         </div>
 
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nama Paket</th>
-                                    <th>Tanggal Berangkat</th>
-                                    <th>Tanggal Selesai</th>
-                                    <th>Durasi</th>
-                                    <th>Jumlah Seat</th>
-                                    <th>Aksi</th>
+                                    <th>Nomor ID</th>
+                                    <th>Nama</th>
+                                    <th>Bin/Binti</th>
+                                    <th>Kota</th>
+                                    <th>Tanggal Daftar</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $d)
                                     <tr>
                                         <td> {{ $loop->iteration }} </td>
-                                        <td> {{ $d->paket_umroh->nama_paket }} </td>
-                                        <td> {{ $d->tanggal_berangkat }} </td>
-                                        <td> {{ $d->tanggal_selesai }} </td>
-                                        <td> {{ $d->durasi }} </td>
-                                        <td> {{ $d->jumlah_seat }} </td>
+                                        <td> {{ $d->no_registrasi }} </td>
+                                        <td> {{ $d->nama_lengkap }} </td>
+                                        <td> {{ $d->bin_binti }} </td>
+                                        <td> {{ $d->kota }} </td>
+                                        <td> {{ $d->tanggal_daftar }} </td>
                                         <td>
-                                            <a href="{{ route('jadwal-keberangkatan.show', $d->id) }}"
+                                            <a href="{{ route('registrasi-umroh.show', $d->id) }}"
+                                                class="btn btn-warning btn-sm">view</a>
+                                            <a href="{{ route('registrasi-umroh.edit', $d->id) }}"
                                                 class="btn btn-warning btn-sm">Edit</a>
-                                            <form action="{{ route('jadwal-keberangkatan.destroy', $d->id) }}"
+                                            <form action="{{ route('registrasi-umroh.destroy', $d->id) }}"
                                                 method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')

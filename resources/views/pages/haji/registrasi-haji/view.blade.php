@@ -52,6 +52,7 @@
                         </div>
                     </div>
 
+                    <a href="{{ route('registrasi-haji.index') }}" class="btn btn-primary">Kembali</a>
                 </div>
             </div>
         </div>

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\BankPenerimaSetoran;
+use App\Models\BiayaRegistrasiHaji;
 use App\Models\DataAgen;
+use App\Models\JenisOpsi;
 use App\Models\KelengkapanRegistrasiHaji;
+use App\Models\PembayaranHaji;
 use App\Models\RegistrasiHaji;
 use Illuminate\Http\Request;
 
@@ -14,6 +17,8 @@ class RegistrasiHajiController extends Controller
     public function index()
     {
         $data = RegistrasiHaji::all();
+        // $test = RegistrasiHaji::with('biaya_registrasi_haji', 'pembayaran_haji')->get();
+        // return response($test);
         return view('pages.haji.registrasi-haji.index', compact('data'));
     }
 
@@ -23,8 +28,20 @@ class RegistrasiHajiController extends Controller
         $bps = BankPenerimaSetoran::all();
         $kelengkapan_registrasi = KelengkapanRegistrasiHaji::orderBy('urutan_tampil', 'asc')->get();
         $no_registrasi = now()->format('YmdHis');
+        $status_pernikahan = JenisOpsi::where('nama', 'Status Pernikahan')
+            ->first()
+            ->data_opsi()
+            ->where('status', 'aktif')
+            ->get();
 
-        return view('pages.haji.registrasi-haji.create', compact('no_registrasi', 'agen', 'bps', 'kelengkapan_registrasi'));
+        $jenis_haji = JenisOpsi::where('nama', 'Jenis Haji')
+            ->first()
+            ->data_opsi()
+            ->where('status', 'aktif')
+            ->get();
+
+        $biaya_registrasi = BiayaRegistrasiHaji::all();
+        return view('pages.haji.registrasi-haji.create', compact('no_registrasi', 'agen', 'bps', 'kelengkapan_registrasi', 'status_pernikahan', 'jenis_haji', 'biaya_registrasi'));
     }
 
     public function store(Request $request)
@@ -40,7 +57,7 @@ class RegistrasiHajiController extends Controller
         $data = $request->except(['foto']);
         $data['foto'] = $fotoPath;
 
-        RegistrasiHaji::create($data);
+        $dancok = RegistrasiHaji::create($data);
         return redirect()->route('registrasi-haji.index')->with('success', 'data berhasil ditambahkan');
     }
 
