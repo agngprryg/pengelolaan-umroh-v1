@@ -22,9 +22,10 @@ class PembayaranHajiController extends Controller
     {
         $registrasi = PembayaranHaji::with('registrasi_haji.biaya_registrasi_haji')
             ->where('registrasi_haji_id', $id)
-            ->firstOrFail();
+            ->latest()
+            ->first();
 
-        return response($registrasi);
+        // return response($registrasi);
         $data = RegistrasiHaji::all();
         $jenis_pembayaran = JenisOpsi::where('nama', 'Jenis Pembayaran')
             ->first()
@@ -35,48 +36,34 @@ class PembayaranHajiController extends Controller
     }
 
 
-    public function pay(Request $request, $id)
+    public function pay(Request $request, $transaksi_id)
     {
 
-        $registrasi = PembayaranHaji::with('registrasi_haji.biaya_registrasi_haji')
-            ->where('registrasi_haji_id', $id)
-            ->firstOrFail();
+        $pembayaran = PembayaranHaji::findOrFail($transaksi_id);
 
-        $data = $registrasi->registrasi_haji->biaya_registrasi_haji->jumlah_biaya;
+        $sisa_pembayaran = $pembayaran->sisa_pembayaran;
+        $jumlah_uang = $request->jumlah_uang;
 
-        return response($data);
-
-        // Hitung sisa pembayaran (misalnya, dari biaya registrasi - sudah bayar)
-        $sisaPembayaran = $request->sisa_pembayaran > 0 ? $request->sisa_pembayaran - $request->jumlah_uang : 0;
-
-        // Hitung kembalian (jika jumlah uang lebih besar dari yang harus dibayar)
-        $kembalian = $request->jumlah_uang - $request->sudah_bayar;
-        if ($kembalian < 0) {
-            $kembalian = 0; // Tidak ada kembalian jika uang kurang dari sudah bayar
-        }
+        $sisa_pembayaran_validasi = $sisa_pembayaran - $request->jumlah_uang < 0 ? 0 : $sisa_pembayaran - $request->jumlah_uang;
+        $kembalian_validasi = $jumlah_uang - $pembayaran->sisa_pembayaran < 0 ? 0 : $jumlah_uang - $pembayaran->sisa_pembayaran;
 
         PembayaranHaji::create([
             'registrasi_haji_id' => $request->registrasi_haji_id,
-            'sudah_bayar' => $request->sudah_bayar,
-            'sisa_pembayaran' => $sisaPembayaran,
+            'sudah_bayar' => $request->jumlah_uang,
+            'sisa_pembayaran' => $sisa_pembayaran_validasi,
             'no_kuitansi' => $request->no_kuitansi,
             'tanggal_pembayaran' => $request->tanggal_pembayaran,
             'jenis_pembayaran' => $request->jenis_pembayaran,
             'jumlah_uang' => $request->jumlah_uang,
-            'kembalian' => $kembalian,
+            'kembalian' => $kembalian_validasi,
             'status' => $request->status,
             'tujuan_pembayaran' => $request->tujuan_pembayaran,
             'petugas' => $request->petugas,
         ]);
+
         return redirect()->route('pembayaran-haji.index')->with('success', 'pembayaran berhasil dibuat');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //

@@ -20,16 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
      *
      * @var array
      */
-    protected $fillable = [
-        'username',
-        'first_name',
-        'last_name',
-        'phone_number',
-        'status',
-        'banned',
-        'email',
-        'password',
-    ];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -57,7 +48,8 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->first_name . ' ' . $this->last_name;
     }
 
-    public function userProfile() {
+    public function userProfile()
+    {
         return $this->hasOne(UserProfile::class, 'user_id', 'id');
     }
 }

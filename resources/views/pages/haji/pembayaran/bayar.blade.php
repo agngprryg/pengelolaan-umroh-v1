@@ -11,7 +11,7 @@
                     </div>
 
                     <div class="mt-5 container">
-                        <form action="{{ route('pembayaran-haji', $registrasi->registrasi_haji_id) }}" method="POST">
+                        <form action="{{ route('pembayaran-haji', $registrasi->id) }}" method="POST">
                             @csrf
 
                             <div class="mb-4">
@@ -83,7 +83,8 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     <div class="mb-3">
                                         <label for="no_kuitansi" class="form-label">No Kuitansi</label>
-                                        <input type="text" class="form-control" name="no_kuitansi" required>
+                                        <input type="text" class="form-control" name="no_kuitansi"
+                                            value="{{ $registrasi->no_kuitansi }}" readonly>
                                     </div>
 
                                     <div class="mb-3">
@@ -114,7 +115,7 @@
 
                                     <div class="mb-3">
                                         <label for="kembalian" class="form-label">Kembalian</label>
-                                        <input type="number" class="form-control" name="kembalian"
+                                        <input type="number" class="form-control"
                                             value="{{ $registrasi->kembalian }}" readonly>
                                     </div>
 

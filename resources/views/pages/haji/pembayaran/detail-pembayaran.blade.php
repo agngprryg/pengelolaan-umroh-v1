@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h3 class="mb-2">Data Keagenan</h3>
+                            <h3 class="mb-2">Detail Pembayaran Jamaah Haji</h3>
                         </div>
                     </div>
 
@@ -25,7 +25,8 @@
                                     <th>#</th>
                                     <th>Tanggal Pembayaran</th>
                                     <th>Jumlah Bayar</th>
-                                    <th>Jenis Pembayaran</th>
+                                    <th>Sisa Pembayaran</th>
+                                    <th>Keterangan Pembayaran</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -35,7 +36,8 @@
                                         <td> {{ $loop->iteration }} </td>
                                         <td> {{ $d->tanggal_pembayaran }} </td>
                                         <td>Rp. {{ number_format($d->jumlah_uang) }} </td>
-                                        <td> {{ $d->jenis_pembayaran }} </td>
+                                        <td>Rp. {{ number_format($d->sisa_pembayaran) }} </td>
+                                        <td> {{ $d->tujuan_pembayaran }} </td>
                                         <td>
                                             <a href="{{ route('data-agen.show', $d->id) }}"
                                                 class="btn btn-warning btn-sm">Detail</a>

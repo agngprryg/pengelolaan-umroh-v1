@@ -10,15 +10,16 @@ use App\Models\KelengkapanRegistrasiHaji;
 use App\Models\PembayaranHaji;
 use App\Models\RegistrasiHaji;
 use Illuminate\Http\Request;
+use Monolog\Registry;
 
 class RegistrasiHajiController extends Controller
 {
 
     public function index()
     {
-        $data = RegistrasiHaji::all();
         // $test = RegistrasiHaji::with('biaya_registrasi_haji', 'pembayaran_haji')->get();
         // return response($test);
+        $data = RegistrasiHaji::all();
         return view('pages.haji.registrasi-haji.index', compact('data'));
     }
 
@@ -46,10 +47,6 @@ class RegistrasiHajiController extends Controller
 
     public function store(Request $request)
     {
-        // $alamatLengkap = "{$request->jalan}, Desa {$request->desa}, Kec. {$request->kecamatan}, Kab. {$request->kabupaten}, Prov. {$request->provinsi}, Kode Pos {$request->kode_pos}";
-        // $data = $request->except(['alamat_calon']);
-        // $data['alamat_calon'] = $alamatLengkap;
-
         $fotoPath = null;
         if ($request->hasFile('foto')) {
             $fotoPath = $request->file('foto')->store('logos', 'public');
@@ -57,7 +54,22 @@ class RegistrasiHajiController extends Controller
         $data = $request->except(['foto']);
         $data['foto'] = $fotoPath;
 
-        $dancok = RegistrasiHaji::create($data);
+        $registrasi = RegistrasiHaji::create($data);
+        $registrasi->load('biaya_registrasi_haji');
+        $no_kuitansi = now()->format('is');
+        PembayaranHaji::create([
+            'registrasi_haji_id' => $registrasi->id,
+            'sudah_bayar' => 0,
+            'sisa_pembayaran' => $registrasi->biaya_registrasi_haji->jumlah_biaya,
+            'no_kuitansi' => 'INV' . $no_kuitansi,
+            'tanggal_pembayaran' => now()->format('Y-m-d'),
+            'jenis_pembayaran' => null,
+            'jumlah_uang' => 0,
+            'kembalian' => 0,
+            'status' => 'belum lunas',
+            'tujuan_pembayaran' => 'Pendaftaran Awal',
+            'petugas' => null
+        ]);
         return redirect()->route('registrasi-haji.index')->with('success', 'data berhasil ditambahkan');
     }
 
