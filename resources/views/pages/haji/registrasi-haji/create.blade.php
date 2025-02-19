@@ -94,7 +94,7 @@
 
                                 <div class="mb-3">
                                     <label for="no_rekening" class="form-label">No Rekening</label>
-                                    <input type="text" name="no_rekening" id="no_rekening"
+                                    <input type="number" name="no_rekening" id="no_rekening"
                                         class="form-control"required>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
 
                                 <div class="mb-3">
                                     <label for="nik" class="form-label">NIK/No KTP</label>
-                                    <input type="text" name="nik" id="nik"
+                                    <input type="number" name="nik" id="nik"
                                         class="form-control"required>
                                 </div>
 
@@ -223,7 +223,7 @@
 
                                 <div class="mb-3">
                                     <label for="kode_pos" class="form-label">Kode Pos</label>
-                                    <input type="text" name="kode_pos" id="kode_pos"
+                                    <input type="number" name="kode_pos" id="kode_pos"
                                         class="form-control"required>
                                 </div>
 

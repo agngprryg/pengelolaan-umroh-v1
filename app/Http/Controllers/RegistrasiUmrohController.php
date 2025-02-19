@@ -30,9 +30,15 @@ class RegistrasiUmrohController extends Controller
             ->data_opsi()
             ->where('status', 'aktif')
             ->get();
+
+        $status_mahram = JenisOpsi::where('nama', 'Status Mahram')
+            ->first()
+            ->data_opsi()
+            ->where('status', 'aktif')
+            ->get();
         $kelengkapan_registrasi = KelengkapanRegistrasiUmroh::orderBy('urutan_tampil', 'asc')->get();
         $merchandise = MerchandiseUmroh::orderBy('urutan_tampil', 'asc')->get();
-        return view('pages.umroh.registrasi-umroh.create', compact('no_id', 'paket', 'jadwal', 'agen', 'status_pernikahan', 'kelengkapan_registrasi', 'merchandise'));
+        return view('pages.umroh.registrasi-umroh.create', compact('no_id', 'paket', 'jadwal', 'agen', 'status_pernikahan', 'status_mahram', 'kelengkapan_registrasi', 'merchandise'));
     }
 
     public function get_paket_by_id($nama)
@@ -49,14 +55,6 @@ class RegistrasiUmrohController extends Controller
 
     public function store(Request $request)
     {
-        $sisa_kursi = JadwalKeberangkatan::findOrFail($request->jadwal_id);
-
-        if ($sisa_kursi->jumlah_seat > 0) {
-            $sisa_kursi->decrement('jumlah_seat', 1);
-        } else {
-            return response()->json(['error' => 'Seat sudah habis'], 400);
-        }
-
         $fotoPath = null;
         if ($request->hasFile('foto')) {
             $fotoPath = $request->file('foto')->store('logos', 'public');
@@ -64,7 +62,9 @@ class RegistrasiUmrohController extends Controller
         $data = $request->except(['foto']);
         $data['foto'] = $fotoPath;
 
-        RegistrasiUmroh::create($data);
+        $registrasi = RegistrasiUmroh::create($data);
+        //kurangi sisa kursi
+        $registrasi->update(['sisa_kursi' => $registrasi->sisa_kursi - 1]);
         return redirect()->route('registrasi-umroh.index')->with('success', 'data berhasil ditambahkan');
     }
 

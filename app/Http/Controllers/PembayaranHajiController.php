@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\JenisOpsi;
 use App\Models\PembayaranHaji;
 use App\Models\RegistrasiHaji;
-use App\Models\RegistrasiUmroh;
 use Illuminate\Http\Request;
 
 class PembayaranHajiController extends Controller
@@ -14,6 +13,12 @@ class PembayaranHajiController extends Controller
     public function index()
     {
         $data = PembayaranHaji::all();
+        return view('pages.haji.pembayaran.detail-pembayaran', compact('data'));
+    }
+
+    public function show_detail_pay($id)
+    {
+        $data = PembayaranHaji::where('registrasi_haji_id', $id)->get();
         return view('pages.haji.pembayaran.detail-pembayaran', compact('data'));
     }
 

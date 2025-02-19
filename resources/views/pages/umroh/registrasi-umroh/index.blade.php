@@ -29,8 +29,8 @@
                                     <th>#</th>
                                     <th>Nomor ID</th>
                                     <th>Nama</th>
-                                    <th>Bin/Binti</th>
-                                    <th>Kota</th>
+                                    <th>Nama Ayah</th>
+                                    <th>Kecamatan</th>
                                     <th>Tanggal Daftar</th>
                                     <th>Action</th>
                                 </tr>
@@ -39,11 +39,11 @@
                                 @foreach ($data as $d)
                                     <tr>
                                         <td> {{ $loop->iteration }} </td>
-                                        <td> {{ $d->no_registrasi }} </td>
+                                        <td> {{ $d->nomor_id }} </td>
                                         <td> {{ $d->nama_lengkap }} </td>
-                                        <td> {{ $d->bin_binti }} </td>
-                                        <td> {{ $d->kota }} </td>
-                                        <td> {{ $d->tanggal_daftar }} </td>
+                                        <td> {{ $d->nama_ayah }} </td>
+                                        <td> {{ $d->kecamatan }} </td>
+                                        <td> {{ $d->tanggal_pendaftaran }} </td>
                                         <td>
                                             <a href="{{ route('registrasi-umroh.show', $d->id) }}"
                                                 class="btn btn-warning btn-sm">view</a>

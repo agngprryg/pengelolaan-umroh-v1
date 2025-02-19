@@ -52,7 +52,7 @@
                                                     class="btn btn-warning btn-sm">Edit</a>
                                                 <a href="{{ route('pembayaran-haji', $d->id) }}"
                                                     class="btn btn-success btn-sm">Bayar</a>
-                                                <a href="{{ route('pembayaran-haji.index', $d->id) }}"
+                                                <a href="{{ route('detail-pembayaran-haji', $d->id) }}"
                                                     class="btn btn-warning btn-sm">Detail Bayar</a>
                                                 <form action="{{ route('registrasi-haji.destroy', $d->id) }}"
                                                     method="POST" style="display:inline;">
@@ -69,7 +69,6 @@
                             </table>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

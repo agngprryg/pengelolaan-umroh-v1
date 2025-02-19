@@ -37,19 +37,26 @@
                                         <label for="jadwal_keberangkatan" class="form-label">Jadwal
                                             Keberangkatan</label>
                                         <input type="text" name="jadwal_keberangkatan" id="jadwal_keberangkatan"
+                                            class="form-control" readonly
+                                            placeholder="silahkan pilih paket umroh terlebih dahulu">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="tanggal_berangkat" class="form-label">tanggal berangkat</label>
+                                        <input type="date" name="tanggal_berangkat" id="tanggal_berangkat"
                                             class="form-control" readonly>
                                     </div>
 
                                     <div class="mb-3 ">
                                         <label for="fasilitas" class="form-label">Fasilitas</label>
                                         <input type="text" name="fasilitas" id="fasilitas" class="form-control"
-                                            readonly>
+                                            readonly placeholder="silahkan pilih paket umroh terlebih dahulu">
                                     </div>
 
                                     <div class="mb-3 ">
                                         <label for="sisa_kursi" class="form-label">Sisa Kursi</label>
                                         <input type="text" name="sisa_kursi" id="sisa_kursi" class="form-control"
-                                            readonly>
+                                            readonly placeholder="silahkan pilih paket umroh terlebih dahulu">
                                     </div>
 
                                     <div class="mb-3">
@@ -67,13 +74,6 @@
                                         <input type="date" name="tanggal_pendaftaran" id="tanggal_pendaftaran"
                                             class="form-control"required>
                                     </div>
-
-
-                                    <div class="mb-3">
-                                        <label for="tanggal_berangkat" class="form-label">tanggal berangkat</label>
-                                        <input type="date" name="tanggal_berangkat" id="tanggal_berangkat"
-                                            class="form-control"required>
-                                    </div>
                                 </div>
                             </div>
 
@@ -88,8 +88,8 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="nama_passport" class="form-label">Nama Passport</label>
-                                        <input type="text" name="nama_passport" id="nama_passport"
+                                        <label for="nama_passpor" class="form-label">Nama Passport</label>
+                                        <input type="text" name="nama_passpor" id="nama_passpor"
                                             class="form-control"required>
                                     </div>
 
@@ -101,7 +101,7 @@
 
                                     <div class="mb-3">
                                         <label for="nik" class="form-label">NIK/No KTP</label>
-                                        <input type="text" name="nik" id="nik"
+                                        <input type="number" name="nik" id="nik"
                                             class="form-control"required>
                                     </div>
 
@@ -118,8 +118,18 @@
                                     </div>
 
                                     <div class="mb-3">
+                                        <label for="kelompok_usia" class="form-label">Kelompok Usia</label>
+                                        <select name="kelompok_usia" id="kelompok_usia" class="form-select"required>
+                                            <option selected disabled>-- pilih kelompok usia</option>
+                                            <option value="Dewasa(12 Tahun Keatas)">Dewasa(12 Tahun Keatas)</option>
+                                            <option value="Anak-Anak(2-12 Tahun)">Anak-Anak(2-12 Tahun)</option>
+                                            <option value="Balita (0-2 Tahun)">Balita (0-2 Tahun)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
                                         <label for="usia" class="form-label">Usia</label>
-                                        <input type="text" name="usia" id="usia"
+                                        <input type="number" name="usia" id="usia"
                                             class="form-control"required>
                                     </div>
 
@@ -143,6 +153,23 @@
                                             @endforeach
                                         </select>
                                     </div>
+
+                                    <div class="mb-3">
+                                        <label for="nama_mahram" class="form-label">Nama Mahram</label>
+                                        <input type="text" name="nama_mahram" id="nama_mahram"
+                                            class="form-control"required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="status_mahram" class="form-label">Status
+                                            Mahram</label>
+                                        <select name="status_mahram" id="status_mahram" class="form-select"required>
+                                            <option selected disabled>-- pilih Status Mahram --</option>
+                                            @foreach ($status_mahram as $s)
+                                                <option value="{{ $s->item_opsi }}"> {{ $s->item_opsi }} </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
 
@@ -152,7 +179,7 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     <div class="mb-3">
                                         <label for="no_passpor" class="form-label">No Passpor</label>
-                                        <input type="text" name="no_passpor" id="no_passpor"
+                                        <input type="number" name="no_passpor" id="no_passpor"
                                             class="form-control"required>
                                     </div>
 
@@ -179,7 +206,7 @@
 
                                     <div class="mb-3">
                                         <label for="no_telepon" class="form-label">No telepon</label>
-                                        <input type="text" name="no_telepon" id="no_telepon"
+                                        <input type="number" name="no_telepon" id="no_telepon"
                                             class="form-control"required>
                                     </div>
 
@@ -202,6 +229,45 @@
                                     </div>
 
                                     <div class="mb-3">
+                                        <label for="pekerjaan" class="form-label">pekerjaan</label>
+                                        <input type="text" name="pekerjaan" id="pekerjaan"
+                                            class="form-control"required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="pendidikan" class="form-label">Pendidikan Teakhir</label>
+                                        <select name="pendidikan_terakhir" id="pendidikan_terakhir"
+                                            class="form-select"required>
+                                            <option selected disabled>-- pilih pendidikan tearkhir --</option>
+                                            <option value="SD">SD</option>
+                                            <option value="SMP">SMP</option>
+                                            <option value="SMA">SMA</option>
+                                            <option value="S1">S1</option>
+                                            <option value="S2">S2</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="pernah_pergi_umroh" class="form-label">Pernah Pergi Umroh</label>
+                                        <select name="pernah_pergi_umroh" id="pernah_pergi_umroh"
+                                            class="form-select"required>
+                                            <option selected disabled>-- pilih Satu --</option>
+                                            <option value="Pernah">Pernah</option>
+                                            <option value="Tidak">Tidak</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="pernah_pergi_haji" class="form-label">Pernah Pergi Haji</label>
+                                        <select name="pernah_pergi_haji" id="pernah_pergi_haji"
+                                            class="form-select"required>
+                                            <option selected disabled>-- pilih Satu --</option>
+                                            <option value="Pernah">Pernah</option>
+                                            <option value="Tidak">Tidak</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
                                         <label for="kelurahan" class="form-label">kelurahan</label>
                                         <input type="text" name="kelurahan" id="kelurahan"
                                             class="form-control"required>
@@ -209,7 +275,7 @@
 
                                     <div class="mb-3">
                                         <label for="kode_pos" class="form-label">kode pos</label>
-                                        <input type="text" name="kode_pos" id="kode_pos"
+                                        <input type="number" name="kode_pos" id="kode_pos"
                                             class="form-control"required>
                                     </div>
 
@@ -237,6 +303,12 @@
                                             <option value="Ya">Ya</option>
                                             <option value="Tidak">Tidak</option>
                                         </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="penyakit" class="form-label">Memiliki Penyakit Khusus</label>
+                                        <input type="text" name="penyakit" id="penyakit"
+                                            class="form-control"required>
                                     </div>
 
                                     <div class="mb-3">
@@ -323,14 +395,19 @@
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
-                        $("#jadwal_keberangkatan").val(data.jadwal.tanggal_berangkat);
+                        $("#jadwal_keberangkatan").val(
+                            `${data.jadwal.tanggal_berangkat} s/d ${data.jadwal.tanggal_selesai}`
+                        );
                         $("#fasilitas").val(data.paket_umroh.fasilitas);
                         $("#sisa_kursi").val(data.jadwal.jumlah_seat);
+                        $("#tanggal_berangkat").val(data.jadwal.tanggal_berangkat);
                     }
                 });
             } else {
                 $("#jadwal_keberangkatan").val('');
                 $("#fasilitas").val('');
+                $("#sisa_kursi").val('');
+                $("#tanggal_berangkat").val('');
             }
         });
     });

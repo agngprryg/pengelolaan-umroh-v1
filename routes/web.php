@@ -81,6 +81,7 @@ Route::get('/export-pdf', [CetakAmplopController::class, 'export_pdf'])->name('e
 
 Route::prefix('haji')->group(function () {
     Route::resource('registrasi-haji', RegistrasiHajiController::class);
+    Route::get('/detail_pay/{id}', [PembayaranHajiController::class, 'show_detail_pay'])->name('detail-pembayaran-haji');
     Route::get('/pay/{id}', [PembayaranHajiController::class, 'show_pay'])->name('pembayaran-haji');
     Route::post('/pay/{id}', [PembayaranHajiController::class, 'pay'])->name('pembayaran-haji');
     Route::resource('pembayaran-haji', PembayaranHajiController::class);
