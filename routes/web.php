@@ -6,6 +6,7 @@ use App\Http\Controllers\BankPenerimaSetoranController;
 use App\Http\Controllers\BiayaRegistrasiHajiController;
 use App\Http\Controllers\CetakAmplopController;
 use App\Http\Controllers\DataAgenController;
+use App\Http\Controllers\DataCabangController;
 use App\Http\Controllers\DataOpsiController;
 use App\Http\Controllers\DataPenggunaController;
 use App\Http\Controllers\HomeController;
@@ -58,6 +59,7 @@ Route::prefix('pusat-data')->group(function () {
     Route::resource('data-opsi', DataOpsiController::class);
     Route::resource('jenis-opsi', JenisOpsiController::class);
     Route::resource('data-agen', DataAgenController::class);
+    Route::resource('data-cabang', DataCabangController::class);
 });
 
 Route::prefix('setting-haji')->group(function () {
