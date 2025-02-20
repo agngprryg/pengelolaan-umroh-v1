@@ -24,8 +24,8 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="paket_umroh" class="form-label">Paket Umroh</label>
-                                        <select name="paket_umroh" id="paket_umroh" class="form-select" required>
+                                        <label for="paket_umroh_id" class="form-label">Paket Umroh</label>
+                                        <select name="paket_umroh_id" id="paket_umroh_id" class="form-select" required>
                                             <option selected disabled>-- pilih paket umroh --</option>
                                             @foreach ($paket as $p)
                                                 <option value="{{ $p->id }}">{{ $p->nama_paket }}</option>
@@ -394,7 +394,7 @@
     $(document).ready(function() {
         let tipeKamarData = []; // Array untuk menyimpan data tipe kamar dan harga
 
-        $("#paket_umroh").change(function() {
+        $("#paket_umroh_id").change(function() {
             var paketName = $(this).val();
             if (paketName) {
                 $.ajax({
