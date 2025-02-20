@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataPengguna;
+use App\Models\JadwalKeberangkatan;
 use App\Models\JenisOpsi;
 use App\Models\PaketUmroh;
 use Illuminate\Http\Request;
@@ -20,12 +21,13 @@ class PaketUmrohController extends Controller
 
     public function create()
     {
-        $opsis = JenisOpsi::where('nama', 'fasilitas')
+        $opsis = JenisOpsi::where('nama', 'Tipe Kamar')
             ->first()
             ->data_opsi()
             ->where('status', 'aktif')
             ->get();
-        return view('pages.setting-umroh.paket-umroh.create', compact('opsis'));
+        $jadwal_keberangkatan = JadwalKeberangkatan::all();
+        return view('pages.setting-umroh.paket-umroh.create', compact('opsis', 'jadwal_keberangkatan'));
     }
 
     public function store(Request $request)
@@ -36,13 +38,14 @@ class PaketUmrohController extends Controller
 
     public function show($id)
     {
-        $opsis = JenisOpsi::where('nama', 'fasilitas')
+        $opsis = JenisOpsi::where('nama', 'Tipe Kamar')
             ->first()
             ->data_opsi()
             ->where('status', 'aktif')
             ->get();
         $data = PaketUmroh::findOrFail($id);
-        return view('pages.setting-umroh.paket-umroh.edit', compact('data', 'opsis'));
+        $jadwal_keberangkatan = JadwalKeberangkatan::all();
+        return view('pages.setting-umroh.paket-umroh.edit', compact('data', 'opsis', 'jadwal_keberangkatan'));
     }
 
     public function update(Request $request, $id)

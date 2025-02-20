@@ -41,16 +41,33 @@ class RegistrasiUmrohController extends Controller
         return view('pages.umroh.registrasi-umroh.create', compact('no_id', 'paket', 'jadwal', 'agen', 'status_pernikahan', 'status_mahram', 'kelengkapan_registrasi', 'merchandise'));
     }
 
-    public function get_paket_by_id($nama)
+    public function get_paket_by_id($id)
     {
-        $data = JadwalKeberangkatan::whereHas('paket_umroh', function ($query) use ($nama) {
-            $query->where('nama_paket', urldecode($nama));
-        })->first();
-        return response()->json([
-            'jadwal' => $data,
-            'paket_umroh' => $data->paket_umroh,
-            'fasilitas' => $data->paket_umroh->fasilitas
-        ]);
+
+        $data = PaketUmroh::with('jadwal_keberangkatan')->where('id', $id)->first();
+        // return response()->json([
+        //     'fasilitas' => [
+        //         'nama' => $data->fasilitas,
+        //         'harga' => $data->harga
+        //     ]
+        // ]);
+        // return response()->json([
+        //     'fasilitas' => collect($data->fasilitas)->map(function ($item) {
+        //         return [
+        //             'nama' => $item['nama'],
+        //             'harga' => $item['harga']
+        //         ];
+        //     })
+        // ]);
+
+        return json_decode($data);
+
+        // return response()->json([
+        //     'jadwal' => $data,
+        //     'paket_umroh' => $data->nama_paket,
+        //     'fasilitas' => $data->fasilitas,
+        //     'jadwal_keb'
+        // ]);
     }
 
     public function store(Request $request)

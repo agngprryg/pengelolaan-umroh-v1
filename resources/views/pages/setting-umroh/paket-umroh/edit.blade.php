@@ -27,16 +27,16 @@
                             </div>
 
                             <div id="inputContainer">
-                                @foreach ($data->fasilitas as $index => $fasilitas)
+                                @foreach ($data->tipe_kamar as $index => $tipe_kamar)
                                     <div class="w-100 mb-3 d-flex gap-5 input-group">
-                                        <!-- Fasilitas -->
+                                        <!-- Tipe Kamar -->
                                         <div class="w-50">
-                                            <label class="form-label">Fasilitas</label>
-                                            <select name="fasilitas[]" class="form-select" required>
+                                            <label class="form-label">Tipe Kamar</label>
+                                            <select name="tipe_kamar[]" class="form-select" required>
                                                 <option selected disabled>-- pilih Status --</option>
                                                 @foreach ($opsis as $opsi)
                                                     <option value="{{ $opsi->item_opsi }}"
-                                                        {{ $opsi->item_opsi == $fasilitas ? 'selected' : '' }}>
+                                                        {{ $opsi->item_opsi == $tipe_kamar ? 'selected' : '' }}>
                                                         {{ $opsi->item_opsi }}
                                                     </option>
                                                 @endforeach
@@ -57,6 +57,19 @@
                                             onclick="hapusInput(this)">-</button>
                                     </div>
                                 @endforeach
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="status" class="form-label">Jadwal Keberangkatan</label>
+                                <select type="text" name="jadwal_keberangkatan_id" id="Jenis opsi"
+                                    class="form-select" required>
+                                    <option selected disabled>-- pilih Jadwal Keberangkatan --</option>
+                                    @foreach ($jadwal_keberangkatan as $j)
+                                        <option value="{{ $j->id }}" {{ $data->id == $j->id ? 'selected' : '' }}>
+                                            {{ $j->tanggal_berangkat }} S/D
+                                            {{ $j->tanggal_selesai }} </option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="mb-3">
@@ -91,8 +104,8 @@
 
         newRow.innerHTML = `
             <div class="w-50">
-                <label class="form-label">Fasilitas</label>
-                <select name="fasilitas[]" class="form-select" required>
+                <label class="form-label">tipe_kamar</label>
+                <select name="tipe_kamar[]" class="form-select" required>
                     <option selected disabled>-- pilih Status --</option>
                     @foreach ($opsis as $opsi)
                         <option value="{{ $opsi->item_opsi }}">{{ $opsi->item_opsi }}</option>

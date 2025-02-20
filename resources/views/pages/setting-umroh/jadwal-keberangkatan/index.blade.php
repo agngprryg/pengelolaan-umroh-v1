@@ -40,11 +40,11 @@
                                 @foreach ($data as $d)
                                     <tr>
                                         <td> {{ $loop->iteration }} </td>
-                                        <td> {{ $d->paket_umroh->nama_paket }} </td>
-                                        <td> {{ $d->tanggal_berangkat }} </td>
-                                        <td> {{ $d->tanggal_selesai }} </td>
-                                        <td> {{ $d->durasi }} </td>
-                                        <td> {{ $d->jumlah_seat }} </td>
+                                        <td> {{ $d->nama_paket }} </td>
+                                        <td> {{ $d->jadwal_keberangkatan->tanggal_berangkat }} </td>
+                                        <td> {{ $d->jadwal_keberangkatan->tanggal_selesai }} </td>
+                                        <td> {{ $d->jadwal_keberangkatan->durasi }} </td>
+                                        <td> {{ $d->jadwal_keberangkatan->jumlah_seat }} </td>
                                         <td>
                                             <a href="{{ route('jadwal-keberangkatan.show', $d->id) }}"
                                                 class="btn btn-warning btn-sm">Edit</a>

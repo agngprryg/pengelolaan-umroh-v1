@@ -68,6 +68,8 @@ class DataOpsiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = DataOpsi::findOrFail($id);
+        $data->delete($data);
+        return redirect()->route('data-opsi.index')->with('success', 'data berhasil di hapus');
     }
 }

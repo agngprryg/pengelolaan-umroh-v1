@@ -9,14 +9,19 @@ class PaketUmroh extends Model
 {
     use HasFactory;
     protected $table = 'paket_umroh';
-    protected $fillable = ['nama_paket', 'fasilitas', 'harga', 'durasi', 'status'];
+    protected $fillable = ['jadwal_keberangkatan_id', 'nama_paket', 'tipe_kamar', 'harga', 'durasi', 'status'];
     protected $casts = [
-        'fasilitas' => 'array',
+        'tipe_kamar' => 'array',
         'harga' => 'array'
     ];
 
     public function jadwal_keberangkatan()
     {
-        return $this->hasMany(JadwalKeberangkatan::class, 'paket_umroh_id');
+        return $this->belongsTo(JadwalKeberangkatan::class);
+    }
+
+    public function registrasi_umroh()
+    {
+        return $this->hasMany(RegistrasiUmroh::class, 'paket_umroh_id');
     }
 }

@@ -11,14 +11,10 @@ class RegistrasiUmroh extends Model
     protected $table = 'registrasi_umroh';
 
     protected $fillable = [
+        'paket_umroh_id',
         'nomor_id',
-        'paket_umroh',
-        'jadwal_keberangkatan',
         'agen',
         'tanggal_pendaftaran',
-        'fasilitas',
-        'sisa_kursi',
-        'tanggal_berangkat',
         'nama_lengkap',
         'nama_passpor',
         'nama_ayah',
@@ -58,4 +54,9 @@ class RegistrasiUmroh extends Model
         'dokumen_kelengkapan' => 'array',
         'merchandise_diterima' => 'array',
     ];
+
+    public function paket_umroh()
+    {
+        return $this->belongsTo(PaketUmroh::class);
+    }
 }

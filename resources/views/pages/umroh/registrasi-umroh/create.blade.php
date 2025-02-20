@@ -28,7 +28,7 @@
                                         <select name="paket_umroh" id="paket_umroh" class="form-select" required>
                                             <option selected disabled>-- pilih paket umroh --</option>
                                             @foreach ($paket as $p)
-                                                <option value="{{ $p->nama_paket }}">{{ $p->nama_paket }}</option>
+                                                <option value="{{ $p->id }}">{{ $p->nama_paket }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -36,27 +36,32 @@
                                     <div class="mb-3 ">
                                         <label for="jadwal_keberangkatan" class="form-label">Jadwal
                                             Keberangkatan</label>
-                                        <input type="text" name="jadwal_keberangkatan" id="jadwal_keberangkatan"
-                                            class="form-control" readonly
+                                        <input type="text" id="jadwal_keberangkatan" class="form-control" readonly
                                             placeholder="silahkan pilih paket umroh terlebih dahulu">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="tanggal_berangkat" class="form-label">tanggal berangkat</label>
-                                        <input type="date" name="tanggal_berangkat" id="tanggal_berangkat"
-                                            class="form-control" readonly>
+                                        <input type="date" id="tanggal_berangkat" class="form-control" readonly>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="fasilitas" class="form-label">Fasilitas</label>
+                                        <select id="fasilitas" class="form-select">
+                                            <option value="">Silahkan pilih paket umroh terlebih dahulu</option>
+                                        </select>
                                     </div>
 
                                     <div class="mb-3 ">
-                                        <label for="fasilitas" class="form-label">Fasilitas</label>
-                                        <input type="text" name="fasilitas" id="fasilitas" class="form-control"
-                                            readonly placeholder="silahkan pilih paket umroh terlebih dahulu">
+                                        <label for="harga" class="form-label">Harga</label>
+                                        <input type="text" id="harga" class="form-control" readonly
+                                            placeholder="silahkan pilih paket umroh terlebih dahulu">
                                     </div>
 
                                     <div class="mb-3 ">
                                         <label for="sisa_kursi" class="form-label">Sisa Kursi</label>
-                                        <input type="text" name="sisa_kursi" id="sisa_kursi" class="form-control"
-                                            readonly placeholder="silahkan pilih paket umroh terlebih dahulu">
+                                        <input type="text" id="sisa_kursi" class="form-control" readonly
+                                            placeholder="silahkan pilih paket umroh terlebih dahulu">
                                     </div>
 
                                     <div class="mb-3">
@@ -395,19 +400,43 @@
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
+                        // Update jadwal keberangkatan
                         $("#jadwal_keberangkatan").val(
-                            `${data.jadwal.tanggal_berangkat} s/d ${data.jadwal.tanggal_selesai}`
+                            `${data.jadwal_keberangkatan.tanggal_berangkat} s/d ${data.jadwal_keberangkatan.tanggal_selesai}`
                         );
-                        $("#fasilitas").val(data.paket_umroh.fasilitas);
-                        $("#sisa_kursi").val(data.jadwal.jumlah_seat);
-                        $("#tanggal_berangkat").val(data.jadwal.tanggal_berangkat);
+                        $("#sisa_kursi").val(data.jadwal_keberangkatan.jumlah_seat);
+                        $("#tanggal_berangkat").val(data.jadwal_keberangkatan
+                            .tanggal_berangkat);
+
+                        // Update select fasilitas
+                        var fasilitasSelect = $("#fasilitas");
+                        fasilitasSelect.empty(); // Kosongkan opsi sebelumnya
+                        fasilitasSelect.append(
+                            '<option value="">Pilih Fasilitas</option>'
+                        ); // Tambahkan opsi default
+
+                        // Pastikan data.fasilitas adalah array
+                        if (Array.isArray(data.fasilitas)) {
+                            data.fasilitas.forEach(function(fasilitas) {
+                                fasilitasSelect.append(
+                                    `<option value="${fasilitas}">${fasilitas}</option>`
+                                );
+                            });
+                        } else {
+                            fasilitasSelect.append(
+                                '<option value="">Data fasilitas tidak tersedia</option>'
+                            );
+                        }
                     }
                 });
             } else {
                 $("#jadwal_keberangkatan").val('');
-                $("#fasilitas").val('');
                 $("#sisa_kursi").val('');
                 $("#tanggal_berangkat").val('');
+
+                // Kosongkan opsi fasilitas jika paket tidak dipilih
+                $("#fasilitas").empty().append(
+                    '<option value="">Silahkan pilih paket umroh terlebih dahulu</option>');
             }
         });
     });

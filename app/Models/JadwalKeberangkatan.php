@@ -10,10 +10,10 @@ class JadwalKeberangkatan extends Model
     use HasFactory;
 
     protected $table = 'jadwal_keberangkatan';
-    protected $fillable = ['paket_umroh_id', 'tanggal_berangkat', 'tanggal_selesai', 'durasi', 'jumlah_seat'];
+    protected $fillable = ['tanggal_berangkat', 'tanggal_selesai', 'durasi', 'jumlah_seat'];
 
     public function paket_umroh()
     {
-        return $this->belongsTo(PaketUmroh::class);
+        return $this->hasMany(PaketUmroh::class, 'jadwal_keberangkatan_id');
     }
 }

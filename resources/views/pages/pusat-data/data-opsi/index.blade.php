@@ -42,8 +42,6 @@
                                         <td> {{ $d->jenis_opsi->nama }} </td>
                                         <td> {{ $d->status }} </td>
                                         <td>
-                                            <a href="{{ route('data-opsi.show', $d->id) }}"
-                                                class="btn btn-warning btn-sm">Edit</a>
                                             <form action="{{ route('data-opsi.destroy', $d->id) }}" method="POST"
                                                 style="display:inline;">
                                                 @csrf

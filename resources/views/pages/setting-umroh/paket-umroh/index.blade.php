@@ -29,7 +29,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nama Paket</th>
-                                    <th>Fasilitas</th>
+                                    <th>Tipe Kamar</th>
                                     <th>Harga</th>
                                     <th>Durasi</th>
                                     <th>Status</th>
@@ -43,8 +43,8 @@
                                         <td> {{ $d->nama_paket }} </td>
                                         <td>
                                             <ul>
-                                                @foreach ($d->fasilitas as $fasilitas)
-                                                    <li>{{ $fasilitas }}</li>
+                                                @foreach ($d->tipe_kamar as $tipe_kamar)
+                                                    <li>{{ $tipe_kamar }}</li>
                                                 @endforeach
                                             </ul>
                                         </td>

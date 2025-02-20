@@ -14,16 +14,6 @@
                             @csrf
 
                             <div class="mb-3">
-                                <label for="paket_umroh_id" class="form-label"></label>
-                                <select name="paket_umroh_id" id="paket_umroh_id" class="form-control"required>
-                                    <option selected disabled>-- pilih paket umroh --</option>
-                                    @foreach ($paket as $p)
-                                        <option value="{{ $p->id }}">{{ $p->nama_paket }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
                                 <label for="tanggal_berangkat" class="form-label">Tanggal Berangkat</label>
                                 <input type="date" name="tanggal_berangkat" id="tanggal_berangkat"
                                     class="form-control" required>
@@ -37,12 +27,12 @@
 
                             <div class="mb-3">
                                 <label for="durasi" class="form-label">Durasi</label>
-                                <input type="text" name="durasi" id="durasi" class="form-control"required>
+                                <input type="number" name="durasi" id="durasi" class="form-control"required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="jumlah_seat" class="form-label">Jumlah Seat</label>
-                                <input type="text" name="jumlah_seat" id="jumlah_seat" class="form-control"required>
+                                <input type="number" name="jumlah_seat" id="jumlah_seat" class="form-control"required>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Simpan</button>
