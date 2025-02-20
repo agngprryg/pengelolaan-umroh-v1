@@ -45,29 +45,28 @@ class RegistrasiUmrohController extends Controller
     {
 
         $data = PaketUmroh::with('jadwal_keberangkatan')->where('id', $id)->first();
-        // return response()->json([
-        //     'fasilitas' => [
-        //         'nama' => $data->fasilitas,
-        //         'harga' => $data->harga
-        //     ]
-        // ]);
-        // return response()->json([
-        //     'fasilitas' => collect($data->fasilitas)->map(function ($item) {
-        //         return [
-        //             'nama' => $item['nama'],
-        //             'harga' => $item['harga']
-        //         ];
-        //     })
-        // ]);
+        $tipeKamarList = [];
+        if (is_array($data->tipe_kamar) && is_array($data->harga) && count($data->tipe_kamar) === count($data->harga)) {
+            foreach ($data->tipe_kamar as $index => $tipe_kamar) {
+                $tipeKamarList[] = [
+                    'nama' => $tipe_kamar,
+                    'harga' => $data->harga[$index]
+                ];
+            }
+        } else {
+            $data = [
+                'status' => '500',
+                'message' => 'data eror jumlah kolom tidak sama'
+            ];
+            return $data;
+        }
 
-        return json_decode($data);
+        return response()->json([
+            'data' => $data,
+            'tipe_kamar' => $tipeKamarList
+        ]);
 
-        // return response()->json([
-        //     'jadwal' => $data,
-        //     'paket_umroh' => $data->nama_paket,
-        //     'fasilitas' => $data->fasilitas,
-        //     'jadwal_keb'
-        // ]);
+        // return response()->json($data);
     }
 
     public function store(Request $request)

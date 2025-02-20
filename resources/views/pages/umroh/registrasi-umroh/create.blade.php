@@ -46,8 +46,8 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="fasilitas" class="form-label">Fasilitas</label>
-                                        <select id="fasilitas" class="form-select">
+                                        <label for="tipe_kamar" class="form-label">Tipe Kamar</label>
+                                        <select id="tipe_kamar" class="form-select">
                                             <option value="">Silahkan pilih paket umroh terlebih dahulu</option>
                                         </select>
                                     </div>
@@ -55,7 +55,7 @@
                                     <div class="mb-3 ">
                                         <label for="harga" class="form-label">Harga</label>
                                         <input type="text" id="harga" class="form-control" readonly
-                                            placeholder="silahkan pilih paket umroh terlebih dahulu">
+                                            placeholder="silahkan pilih Tipe Kamar terlebih dahulu">
                                     </div>
 
                                     <div class="mb-3 ">
@@ -311,7 +311,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="penyakit" class="form-label">Memiliki Penyakit Khusus</label>
+                                        <label for="penyakit" class="form-label">Masukan Penyakit</label>
                                         <input type="text" name="penyakit" id="penyakit"
                                             class="form-control"required>
                                     </div>
@@ -392,6 +392,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
+        let tipeKamarData = []; // Array untuk menyimpan data tipe kamar dan harga
+
         $("#paket_umroh").change(function() {
             var paketName = $(this).val();
             if (paketName) {
@@ -402,42 +404,52 @@
                     success: function(data) {
                         // Update jadwal keberangkatan
                         $("#jadwal_keberangkatan").val(
-                            `${data.jadwal_keberangkatan.tanggal_berangkat} s/d ${data.jadwal_keberangkatan.tanggal_selesai}`
+                            `${data.data.jadwal_keberangkatan.tanggal_berangkat} s/d ${data.data.jadwal_keberangkatan.tanggal_selesai}`
                         );
-                        $("#sisa_kursi").val(data.jadwal_keberangkatan.jumlah_seat);
-                        $("#tanggal_berangkat").val(data.jadwal_keberangkatan
+                        $("#sisa_kursi").val(data.data.jadwal_keberangkatan.jumlah_seat);
+                        $("#tanggal_berangkat").val(data.data.jadwal_keberangkatan
                             .tanggal_berangkat);
 
-                        // Update select fasilitas
-                        var fasilitasSelect = $("#fasilitas");
-                        fasilitasSelect.empty(); // Kosongkan opsi sebelumnya
-                        fasilitasSelect.append(
-                            '<option value="">Pilih Fasilitas</option>'
-                        ); // Tambahkan opsi default
+                        // Update select tipe kamar
+                        var tipeKamarSelect = $("#tipe_kamar");
+                        tipeKamarSelect.empty();
+                        tipeKamarSelect.append(
+                            '<option value="">Pilih Tipe Kamar</option>');
 
-                        // Pastikan data.fasilitas adalah array
-                        if (Array.isArray(data.fasilitas)) {
-                            data.fasilitas.forEach(function(fasilitas) {
-                                fasilitasSelect.append(
-                                    `<option value="${fasilitas}">${fasilitas}</option>`
+                        // Simpan data tipe kamar untuk digunakan nanti
+                        tipeKamarData = data.data.tipe_kamar;
+
+                        // Pastikan data.tipe_kamar adalah array
+                        if (Array.isArray(data.data.tipe_kamar)) {
+                            data.tipe_kamar.forEach(function(kamar) {
+                                tipeKamarSelect.append(
+                                    `<option value="${kamar.harga}">${kamar.nama}</option>`
                                 );
                             });
                         } else {
-                            fasilitasSelect.append(
-                                '<option value="">Data fasilitas tidak tersedia</option>'
+                            tipeKamarSelect.append(
+                                '<option value="">Data tipe kamar tidak tersedia</option>'
                             );
                         }
+
+                        // Reset harga ketika paket berubah
+                        $("#harga").val('');
                     }
                 });
             } else {
                 $("#jadwal_keberangkatan").val('');
                 $("#sisa_kursi").val('');
                 $("#tanggal_berangkat").val('');
-
-                // Kosongkan opsi fasilitas jika paket tidak dipilih
-                $("#fasilitas").empty().append(
-                    '<option value="">Silahkan pilih paket umroh terlebih dahulu</option>');
+                $("#harga").val('');
+                $("#tipe_kamar").empty().append(
+                    '<option value="">Silahkan pilih Tipe Kamar terlebih dahulu</option>');
             }
+        });
+
+        // Event listener untuk select tipe kamar
+        $("#tipe_kamar").change(function() {
+            var selectedHarga = $(this).val();
+            $("#harga").val(selectedHarga ? `Rp ${parseInt(selectedHarga).toLocaleString()}` : '');
         });
     });
 </script>
