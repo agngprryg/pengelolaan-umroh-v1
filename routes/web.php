@@ -9,6 +9,7 @@ use App\Http\Controllers\DataAgenController;
 use App\Http\Controllers\DataCabangController;
 use App\Http\Controllers\DataOpsiController;
 use App\Http\Controllers\DataPenggunaController;
+use App\Http\Controllers\DataPerlengkapanUmrohController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalKeberangkatanController;
 use App\Http\Controllers\JenisOpsiController;
@@ -24,9 +25,6 @@ use App\Http\Controllers\Security\RolePermission;
 use App\Http\Controllers\Security\RoleController;
 use App\Http\Controllers\Security\PermissionController;
 use App\Http\Controllers\UserController;
-use App\Models\BankPenerimaSetoran;
-use App\Models\DataAgen;
-use App\Models\KelengkapanRegistrasiUmroh;
 use Illuminate\Support\Facades\Artisan;
 // Packages
 use Illuminate\Support\Facades\Route;
@@ -60,6 +58,19 @@ Route::prefix('pusat-data')->group(function () {
     Route::resource('jenis-opsi', JenisOpsiController::class);
     Route::resource('data-agen', DataAgenController::class);
     Route::resource('data-cabang', DataCabangController::class);
+    Route::resource('data-perlengkapan-umroh', DataPerlengkapanUmrohController::class);
+    Route::get('/get-cabang-id/{id}', [DataPerlengkapanUmrohController::class, 'get_cabang_by_id'])->name('get-cabang-by-id');
+});
+
+Route::prefix('inventory')->group(function () {
+    Route::get('/stok-cabang', [DataPerlengkapanUmrohController::class, 'stok_cabang'])->name('stok-cabang');
+    Route::get('/stok-pusat', [DataPerlengkapanUmrohController::class, 'stok_pusat'])->name('stok-pusat');
+    Route::get('/tambah-pusat', [DataPerlengkapanUmrohController::class, 'create_pusat'])->name('tambah-pusat');
+    Route::post('/tambah-pusat', [DataPerlengkapanUmrohController::class, 'store_pusat'])->name('tambah-pusat');
+    Route::get('/tambah-cabang', [DataPerlengkapanUmrohController::class, 'create_cabang'])->name('tambah-cabang');
+    Route::post('/tambah-cabang', [DataPerlengkapanUmrohController::class, 'store_cabang'])->name('tambah-cabang');
+    Route::get('/update-pusat/{id}', [DataPerlengkapanUmrohController::class, 'show_pusat'])->name('update-pusat');
+    Route::put('/update-pusat/{id}', [DataPerlengkapanUmrohController::class, 'update_pusat'])->name('update-pusat');
 });
 
 Route::prefix('setting-haji')->group(function () {

@@ -10,6 +10,10 @@ class DataCabangController extends Controller
 
     public function index()
     {
+
+        $data = DataCabang::with('perlengkapan_umroh')->get();
+        // return response($data);
+
         $data = DataCabang::all();
         return view('pages.pusat-data.data-cabang.index', compact('data'));
     }
