@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataAgen;
+use App\Models\DataPerlengkapanUmroh;
 use App\Models\JadwalKeberangkatan;
 use App\Models\JenisOpsi;
 use App\Models\KelengkapanRegistrasiUmroh;
-use App\Models\MerchandiseUmroh;
 use App\Models\PaketUmroh;
 use App\Models\RegistrasiUmroh;
 use Illuminate\Http\Request;
@@ -16,6 +16,7 @@ class RegistrasiUmrohController extends Controller
     public function index()
     {
         $data = RegistrasiUmroh::all();
+        // return response($data);
         return view('pages.umroh.registrasi-umroh.index', compact('data'));
     }
 
@@ -37,8 +38,8 @@ class RegistrasiUmrohController extends Controller
             ->where('status', 'aktif')
             ->get();
         $kelengkapan_registrasi = KelengkapanRegistrasiUmroh::orderBy('urutan_tampil', 'asc')->get();
-        $merchandise = MerchandiseUmroh::orderBy('urutan_tampil', 'asc')->get();
-        return view('pages.umroh.registrasi-umroh.create', compact('no_id', 'paket', 'jadwal', 'agen', 'status_pernikahan', 'status_mahram', 'kelengkapan_registrasi', 'merchandise'));
+        $data_perlengkapan = DataPerlengkapanUmroh::all();
+        return view('pages.umroh.registrasi-umroh.create', compact('no_id', 'paket', 'jadwal', 'agen', 'status_pernikahan', 'status_mahram', 'kelengkapan_registrasi', 'data_perlengkapan'));
     }
 
     public function get_paket_by_id($id)

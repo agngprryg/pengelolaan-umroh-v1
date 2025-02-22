@@ -48,11 +48,11 @@ class RegistrasiUmroh extends Model
         'fasilitas_kursi_roda',
         'foto',
         'dokumen_kelengkapan',
-        'merchandise_diterima'
+        'perlengkapan_umroh'
     ];
     protected $casts = [
         'dokumen_kelengkapan' => 'array',
-        'merchandise_diterima' => 'array',
+        'perlengkapan_umroh' => 'array',
     ];
 
     public function paket_umroh()

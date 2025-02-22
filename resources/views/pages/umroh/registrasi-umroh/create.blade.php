@@ -359,24 +359,32 @@
                                         </label>
                                     </div>
                                 @endforeach
-
                             </div>
 
-                            <div class=" mt-5 mb-5">
-                                <h4 class="mb-4">Data Merchandise yang sudah diterima</h4>
-
-                                @foreach ($merchandise as $m)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="merchandise_diterima"
-                                            value="{{ $m->nama_merchandise }}" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            {{ $m->nama_merchandise }}
-                                        </label>
+                            <div id="dynamic-field">
+                                <div class="mb-3 flex items-end gap-2">
+                                    <div>
+                                        <label for="perlengkapan_umroh" class="form-label">Perlengkapan Umroh</label>
+                                        <select name="perlengkapan_umroh[0][nama_barang]" class="form-select"
+                                            required>
+                                            <option selected disabled>-- Pilih Satu --</option>
+                                            @foreach ($data_perlengkapan as $d)
+                                                <option value="{{ $d->nama_barang }}">Nama: {{ $d->nama_barang }} |
+                                                    Stok: {{ $d->stok }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                @endforeach
-
+                                    <div>
+                                        <label class="form-label">Jumlah</label>
+                                        <input type="number" class="w-50 form-control"
+                                            name="perlengkapan_umroh[0][jumlah_barang]" required>
+                                    </div>
+                                    <button type="button" class="btn btn-danger remove-field"
+                                        style="display: none;">Hapus</button>
+                                    <button type="button" class="btn btn-primary mt-2"
+                                        id="add-field">Tambah</button>
+                                </div>
                             </div>
-
 
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>
@@ -451,5 +459,49 @@
             var selectedHarga = $(this).val();
             $("#harga").val(selectedHarga ? `Rp ${parseInt(selectedHarga).toLocaleString()}` : '');
         });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let index = 1; // Index awal mulai dari 1 karena index 0 sudah ada
+        document.getElementById("add-field").addEventListener("click", function() {
+            const container = document.getElementById("dynamic-field");
+            const newField = document.createElement("div");
+            newField.classList.add("mb-3", "flex", "items-end", "gap-2");
+            newField.innerHTML = `
+            <div>
+                <label class="form-label">Perlengkapan Umroh</label>
+                <select name="perlengkapan_umroh[${index}][nama_barang]" class="form-select" required>
+                    <option selected disabled>-- Pilih Satu --</option>
+                    @foreach ($data_perlengkapan as $d)
+                        <option value="{{ $d->nama_barang }}">Nama: {{ $d->nama_barang }} | Stok: {{ $d->stok }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <label class="form-label">Jumlah</label>
+                <input type="number" class="w-50 form-control" name="perlengkapan_umroh[${index}][jumlah_barang]" required>
+            </div>
+            <button type="button" class="btn btn-danger remove-field">Hapus</button>
+        `;
+            container.appendChild(newField);
+            index++;
+
+            // Tambahkan event listener untuk tombol hapus
+            newField.querySelector(".remove-field").addEventListener("click", function() {
+                newField.remove();
+                reindexFields();
+            });
+        });
+
+        function reindexFields() {
+            const fields = document.querySelectorAll("#dynamic-field > div");
+            fields.forEach((field, newIndex) => {
+                field.querySelector("select").setAttribute("name",
+                    `perlengkapan_umroh[${newIndex}][nama_barang]`);
+                field.querySelector("input").setAttribute("name",
+                    `perlengkapan_umroh[${newIndex}][jumlah_barang]`);
+            });
+        }
     });
 </script>

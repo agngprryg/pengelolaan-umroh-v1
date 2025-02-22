@@ -29,7 +29,9 @@
                                 <select name="cabang" onchange="this.form.submit()" class="form-select">
                                     <option value="">-- Pilih cabang --</option>
                                     @foreach ($data_cabang as $d)
-                                        <option value="{{ $d->id }}"> {{ $d->nama_cabang }} </option>
+                                        <option value="{{ $d->id }}"
+                                            {{ isset($get_cabang_by_id->nama_cabang) && $d->nama_cabang == $get_cabang_by_id->nama_cabang ? 'selected' : '' }}>
+                                            {{ $d->nama_cabang }} </option>
                                     @endforeach
                                 </select>
                             </form>
@@ -48,7 +50,8 @@
                             <tbody>
                                 @if (empty($get_cabang_by_id->perlengkapan_umroh))
                                     <tr>
-                                        <td colspan="4" class="text-center">Data tidak ditemukan</td>
+                                        <td colspan="4" class="text-center">Silahkan Pilih Cabang Terlebih
+                                            Dahulu</td>
                                     </tr>
                                 @else
                                     @foreach ($get_cabang_by_id->perlengkapan_umroh as $d)
@@ -57,9 +60,10 @@
                                             <td> {{ $d->nama_barang }} </td>
                                             <td> {{ $d->pivot->jumlah }} </td>
                                             <td>
-                                                <a href="{{ route('data-perlengkapan-umroh.show', $d->id) }}"
+                                                <a href="{{ route('update-cabang', ['id_cabang' => $get_cabang_by_id->id, 'id_perlengkapan' => $d->id]) }}"
                                                     class="btn btn-warning btn-sm">Edit</a>
-                                                <form action="{{ route('data-perlengkapan-umroh.destroy', $d->id) }}"
+                                                <form
+                                                    action="{{ route('delete-cabang', ['id_cabang' => $get_cabang_by_id->id, 'id_perlengkapan' => $d->id]) }}"
                                                     method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')

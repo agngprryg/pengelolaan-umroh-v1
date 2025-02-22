@@ -10,7 +10,7 @@
                     </div>
 
 
-                    <div class="container mt-5">
+                    <div class="container mt-5 table-responsive">
                         @if (session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ session('success') }}
@@ -29,9 +29,9 @@
                                     <th>#</th>
                                     <th>Nomor ID</th>
                                     <th>Nama</th>
-                                    <th>Nama Ayah</th>
                                     <th>Kecamatan</th>
                                     <th>Tanggal Daftar</th>
+                                    <th>Perlengkapan Umroh</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -41,9 +41,15 @@
                                         <td> {{ $loop->iteration }} </td>
                                         <td> {{ $d->nomor_id }} </td>
                                         <td> {{ $d->nama_lengkap }} </td>
-                                        <td> {{ $d->nama_ayah }} </td>
                                         <td> {{ $d->kecamatan }} </td>
                                         <td> {{ $d->tanggal_pendaftaran }} </td>
+                                        <td>
+                                            <ul>
+                                                @foreach ($d->perlengkapan_umroh as $p)
+                                                    <li>{{ $p['nama_barang'] }} | jumlah: {{ $p['jumlah_barang'] }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </td>
                                         <td>
                                             <a href="{{ route('registrasi-umroh.show', $d->id) }}"
                                                 class="btn btn-warning btn-sm">view</a>

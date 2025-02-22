@@ -65,12 +65,21 @@ Route::prefix('pusat-data')->group(function () {
 Route::prefix('inventory')->group(function () {
     Route::get('/stok-cabang', [DataPerlengkapanUmrohController::class, 'stok_cabang'])->name('stok-cabang');
     Route::get('/stok-pusat', [DataPerlengkapanUmrohController::class, 'stok_pusat'])->name('stok-pusat');
+
     Route::get('/tambah-pusat', [DataPerlengkapanUmrohController::class, 'create_pusat'])->name('tambah-pusat');
     Route::post('/tambah-pusat', [DataPerlengkapanUmrohController::class, 'store_pusat'])->name('tambah-pusat');
+
     Route::get('/tambah-cabang', [DataPerlengkapanUmrohController::class, 'create_cabang'])->name('tambah-cabang');
     Route::post('/tambah-cabang', [DataPerlengkapanUmrohController::class, 'store_cabang'])->name('tambah-cabang');
+
+    Route::get('/update-cabang/cabang/{id_cabang}/perlengkapan/{id_perlengkapan}', [DataPerlengkapanUmrohController::class, 'show_cabang'])->name('update-cabang');
+    Route::put('/update-cabang/cabang/{id_cabang}/perlengkapan/{id_perlengkapan}', [DataPerlengkapanUmrohController::class, 'update_cabang'])->name('update-cabang');
+
     Route::get('/update-pusat/{id}', [DataPerlengkapanUmrohController::class, 'show_pusat'])->name('update-pusat');
     Route::put('/update-pusat/{id}', [DataPerlengkapanUmrohController::class, 'update_pusat'])->name('update-pusat');
+
+    Route::delete('/delete-cabang/cabang/{id_cabang}/perlengkapan/{id_perlengkapan}', [DataPerlengkapanUmrohController::class, 'destroy_cabang'])->name('delete-cabang');
+    Route::delete('/delete-pusat/{id}', [DataPerlengkapanUmrohController::class, 'destroy_pusat'])->name('delete-pusat');
 });
 
 Route::prefix('setting-haji')->group(function () {

@@ -42,7 +42,7 @@
                                         <td>
                                             <a href="{{ route('update-pusat', $d->id) }}"
                                                 class="btn btn-warning btn-sm">Edit</a>
-                                            <form action="{{ route('update-pusat', $d->id) }}" method="POST"
+                                            <form action="{{ route('delete-pusat', $d->id) }}" method="POST"
                                                 style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')

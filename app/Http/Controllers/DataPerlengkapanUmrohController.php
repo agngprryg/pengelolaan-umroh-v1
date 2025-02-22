@@ -97,23 +97,32 @@ class DataPerlengkapanUmrohController extends Controller
         return view('pages.inventory.stok-pusat.edit', compact('data'));
     }
 
-    public function show($id)
+    public function show_cabang($id_cabang, $id_perlengkapan)
     {
-        $data = DataPerlengkapanUmroh::findOrFail($id);
-        return view('pages.pusat-data.data-perlengkapan.edit', compact('data'));
+        $data_cabang = DataCabang::all();
+        $data_perlengkapan = DataPerlengkapanUmroh::all();
+        $cabang = DataCabang::findOrFail($id_cabang);
+        $perlengkapan = $cabang->perlengkapan_umroh()->where('data_perlengkapan_umroh.id', $id_perlengkapan)->firstOrFail();
+        // return response()->json([
+        //     'cabang' => $cabang,
+        //     'perlengkapan' => $perlengkapan
+        // ]);
+        return view('pages.inventory.stok-cabang.edit', compact('data_cabang', 'data_perlengkapan', 'cabang', 'perlengkapan'));
     }
 
-    public function update_pusat(Request $request, $id)
+    public function update_pusat(Request $request, $id_cabang, $id_perlengkapan)
     {
-        $data = DataPerlengkapanUmroh::findOrFail($id);
+        $data = DataPerlengkapanUmroh::findOrFail($id_cabang);
         $data->update($request->all());
         return redirect()->route('stok-pusat')->with('success', 'data berhasil di update');
     }
 
-    public function update(Request $request, $id)
+    public function update_cabang(Request $request, $id_cabang, $id_perlengkapan)
     {
-        $data = DataPerlengkapanUmroh::findOrFail($id);
-        $data->update($request->all());
+        $cabang = DataCabang::findOrFail($id_cabang);
+        $cabang->perlengkapan_umroh()->updateExistingPivot($id_perlengkapan, [
+            'jumlah' => $request->jumlah,
+        ]);
         return redirect()->route('stok-cabang')->with('success', 'data berhasil di update');
     }
 
@@ -124,10 +133,10 @@ class DataPerlengkapanUmrohController extends Controller
         return redirect()->route('stok-pusat')->with('success', 'data berhasil di hapu');
     }
 
-    public function destroy($id)
+    public function destroy_cabang($id_cabang, $id_perlengkapan)
     {
-        $data = DataPerlengkapanUmroh::findOrFail($id);
-        $data->delete();
-        return redirect()->route('stok-cabang')->with('success', 'data berhasil di hapu');
+        $cabang = DataCabang::findOrFail($id_cabang);
+        $cabang->perlengkapan_umroh()->detach($id_perlengkapan);
+        return redirect()->route('stok-cabang')->with('success', 'data berhasil di hapus');
     }
 }
