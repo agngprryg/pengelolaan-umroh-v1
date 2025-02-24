@@ -394,8 +394,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ activeRoute(route('pemandu-jamaah.index')) }}"
-                    href="{{ route('pemandu-jamaah.index') }}">
+                <a class="nav-link {{ activeRoute(route('jasa.index')) }}" href="{{ route('jasa.index') }}">
                     <i class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                             fill="currentColor">
@@ -404,7 +403,7 @@
                             </g>
                         </svg>
                     </i>
-                    <span class="item-name">Pemandu Jamaah</span>
+                    <span class="item-name">Jasa</span>
                 </a>
             </li>
 

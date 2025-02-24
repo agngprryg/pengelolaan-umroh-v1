@@ -5,18 +5,17 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h3 class="mb-2">Tambah Data Pemandu Jamaah </h3>
+                            <h3 class="mb-2">Tambah Data Jasa </h3>
                         </div>
                     </div>
 
                     <div class="mt-5 container">
-                        <form action="{{ route('pemandu-jamaah.store') }}" method="POST">
+                        <form action="{{ route('jasa.store') }}" method="POST">
                             @csrf
 
                             <div class="mb-3">
-                                <label for="nama_pemandu" class="form-label">Nama Pemandu</label>
-                                <input type="text" name="nama_pemandu" id="nama_pemandu"
-                                    class="form-control"required>
+                                <label for="nama_jasa" class="form-label">Nama Jasa</label>
+                                <input type="text" name="nama_jasa" id="nama_jasa" class="form-control"required>
                             </div>
 
                             <div class="mb-3">
@@ -25,12 +24,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="status" class="form-label">Status</label>
-                                <select type="text" name="status" id="status" class="form-select" required>
-                                    <option selected disabled>-- pilih Status --</option>
-                                    <option value="tersedia">tersedia</option>
-                                    <option value="tidak tersedia">tidak tersedia</option>
-                                </select>
+                                <label for="keterangan" class="form-label">Keterangan</label>
+                                <input type="text" name="keterangan" id="keterangan" class="form-control" required>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Simpan</button>
