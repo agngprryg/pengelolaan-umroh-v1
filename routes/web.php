@@ -25,6 +25,7 @@ use App\Http\Controllers\Security\RolePermission;
 use App\Http\Controllers\Security\RoleController;
 use App\Http\Controllers\Security\PermissionController;
 use App\Http\Controllers\SettingHotelController;
+use App\Http\Controllers\SettingPesawatController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan;
 // Packages
@@ -96,6 +97,7 @@ Route::prefix('setting-umroh')->group(function () {
     Route::resource('kelengkapan-registrasi-umroh', KelengkapanRegistrasiUmrohController::class);
     Route::resource('merchandise-umroh', MerchandiseUmrohController::class);
     Route::resource('setting-hotel', SettingHotelController::class);
+    Route::resource('setting-pesawat', SettingPesawatController::class);
 });
 
 
