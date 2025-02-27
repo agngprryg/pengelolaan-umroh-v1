@@ -19,4 +19,9 @@ class DataPerlengkapanUmroh extends Model
     {
         return $this->belongsToMany(DataCabang::class, 'cabang_perlengkapan')->withPivot('jumlah')->withTimestamps();
     }
+
+    public function kelengkapan_umroh()
+    {
+        return $this->hasMany(KelengkapanUmroh::class, 'perlengkapan_umroh_id');
+    }
 }

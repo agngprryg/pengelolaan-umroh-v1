@@ -16,6 +16,7 @@ use App\Http\Controllers\JasaController;
 use App\Http\Controllers\JenisOpsiController;
 use App\Http\Controllers\KelengkapanRegistrasiHajiController;
 use App\Http\Controllers\KelengkapanRegistrasiUmrohController;
+use App\Http\Controllers\KelengkapanUmrohController;
 use App\Http\Controllers\MerchandiseUmrohController;
 use App\Http\Controllers\PaketUmrohController;
 use App\Http\Controllers\PembayaranHajiController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\Security\PermissionController;
 use App\Http\Controllers\SettingHotelController;
 use App\Http\Controllers\SettingPesawatController;
 use App\Http\Controllers\UserController;
+use App\Models\KelengkapanUmroh;
 use Illuminate\Support\Facades\Artisan;
 // Packages
 use Illuminate\Support\Facades\Route;
@@ -100,6 +102,7 @@ Route::prefix('setting-umroh')->group(function () {
     Route::resource('setting-hotel', SettingHotelController::class);
     Route::resource('setting-pesawat', SettingPesawatController::class);
     Route::resource('jasa', JasaController::class);
+    Route::resource('kelengkapan-umroh', KelengkapanUmrohController::class);
 });
 
 
