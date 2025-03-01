@@ -23,15 +23,15 @@
                                 <input type="text" name="durasi" id="durasi" class="form-control" required>
                             </div>
 
-                            <div id="inputContainer">
+                            {{-- Tipe Kamar Section --}}
+                            <div id="tipeKamarContainer">
                                 <div class="w-100 mb-1 d-flex gap-5">
-
                                     <div class="w-50">
                                         <label for="tipe_kamar" class="form-label">Tipe Kamar</label>
                                         <select name="tipe_kamar[]" class="form-select" required>
                                             <option selected disabled>-- pilih Tipe Kamar --</option>
-                                            @foreach ($opsis as $opsi)
-                                                <option value="{{ $opsi->item_opsi }}">{{ $opsi->item_opsi }}</option>
+                                            @foreach ($tipe_kamar as $t)
+                                                <option value="{{ $t->item_opsi }}">{{ $t->item_opsi }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -41,11 +41,53 @@
                                         <input type="number" name="harga[]" class="form-control" required>
                                     </div>
 
+                                    <button type="button" class=" btn btn-primary " onclick="tambahTipeKamar()">
+                                        +</button>
                                 </div>
                             </div>
 
-                            <button type="button" class="btn btn-primary mb-3" onclick="tambahInput()"> +
-                            </button>
+                            <!-- Hotel Section -->
+                            <div id="hotelContainer">
+                                <label class="form-label">Hotel</label>
+                                <div class="w-100 mb-3 d-flex gap-3">
+                                    <select name="hotel[]" class="form-select" required>
+                                        <option selected disabled>Pilih Lokasi</option>
+                                        @foreach ($hotels as $h)
+                                            <option value="{{ $h->lokasi }}">{{ $h->lokasi }}</option>
+                                        @endforeach
+                                    </select>
+                                    <select name="hotel[]" class="form-select" required>
+                                        <option selected disabled>Pilih Hotel</option>
+                                        @foreach ($hotels as $hotel)
+                                            <option value="{{ $hotel->nama_hotel }}">{{ $hotel->nama_hotel }}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="number" name="lama_hari[]" class="form-control"
+                                        placeholder="Lama Hari" required>
+                                    <button type="button" class="btn btn-success" onclick="tambahHotel()">+</button>
+                                </div>
+                            </div>
+
+                            <!-- Pesawat Section -->
+                            <div id="pesawatContainer">
+                                <label class="form-label">Pesawat</label>
+                                <div class="w-100 mb-3 d-flex gap-3">
+                                    <select name="pesawat[]" class="form-select" required>
+                                        <option selected disabled>Pilih Maskapai</option>
+                                        @foreach ($maskapai as $m)
+                                            <option value="{{ $m }}">{{ $m }}</option>
+                                        @endforeach
+                                    </select>
+                                    <select name="pesawat[]" class="form-select" required>
+                                        <option selected disabled>Pilih Rute</option>
+                                        @foreach ($rute as $r)
+                                            <option value="{{ $r }}">{{ $r }}</option>
+                                        @endforeach
+                                    </select>
+                                    <button type="button" class="btn btn-success" onclick="tambahPesawat()">+</button>
+                                </div>
+                            </div>
+
                             <div class="mb-3">
                                 <label for="status" class="form-label">Jadwal Keberangkatan</label>
                                 <select type="text" name="jadwal_keberangkatan_id" id="Jenis opsi"
@@ -57,6 +99,8 @@
                                     @endforeach
                                 </select>
                             </div>
+
+
 
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>
@@ -79,8 +123,8 @@
 </x-app-layout>
 
 <script>
-    function tambahInput() {
-        let container = document.getElementById("inputContainer");
+    function tambahTipeKamar() {
+        let container = document.getElementById("tipeKamarContainer");
         let newRow = document.createElement("div");
         newRow.classList.add("w-100", "mb-3", "d-flex", "gap-5");
         newRow.innerHTML = `
@@ -88,15 +132,62 @@
                 <label class="form-label">tipe_kamar</label>
                 <select name="tipe_kamar[]" class="form-select" required>
                     <option selected disabled>-- pilih Tipe Kamar --</option>
-                    @foreach ($opsis as $opsi)
-                        <option value="{{ $opsi->item_opsi }}">{{ $opsi->item_opsi }}</option>
+                    @foreach ($tipe_kamar as $t)
+                        <option value="{{ $t->item_opsi }}">{{ $t->item_opsi }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="w-50">
                 <label class="form-label">Harga</label>
-                <input type="text" name="harga[]" class="form-control" required>
+                <input type="number" name="harga[]" class="form-control" required>
             </div>
+            <button type="button" class=" btn btn-primary " onclick="tambahTipeKamar()"> +
+
+        `;
+        container.appendChild(newRow);
+    }
+
+    function tambahHotel() {
+        let container = document.getElementById("hotelContainer");
+        let newRow = document.createElement("div");
+        newRow.classList.add("w-100", "mb-3", "d-flex", "gap-3");
+        newRow.innerHTML = `
+        <select name="hotel[]" class="form-select" required>
+            <option selected disabled>Pilih Lokasi</option>
+                @foreach ($hotels as $h)
+            <option value="{{ $h->lokasi }}">{{ $h->lokasi }}</option>
+                    @endforeach
+        </select>
+        <select name="hotel[]" class="form-select" required>
+            <option selected disabled>Pilih Hotel</option>
+                @foreach ($hotels as $hotel)
+                    <option value="{{ $hotel->nama_hotel }}">{{ $hotel->nama_hotel }}</option>
+                 @endforeach
+        </select>
+        <input type="number" name="lama_hari[]" class="form-control" placeholder="Lama Hari" required>
+        <button type="button" class="btn btn-success" onclick="tambahHotel()">+</button>
+        `;
+        container.appendChild(newRow);
+    }
+
+    function tambahPesawat() {
+        let container = document.getElementById("pesawatContainer");
+        let newRow = document.createElement("div");
+        newRow.classList.add("w-100", "mb-3", "d-flex", "gap-3");
+        newRow.innerHTML = `
+            <select name="pesawat[]" class="form-select" required>
+                <option selected disabled>Pilih Maskapai</option>
+                    @foreach ($maskapai as $m)
+                option value="{{ $m }}">{{ $m }}</option>
+                    @endforeach
+            </select>
+            <select name="pesawat[]" class="form-select" required>
+                <option selected disabled>Pilih Rute</option>
+                @foreach ($rute as $r)
+                <option value="{{ $r }}">{{ $r }}</option>
+                @endforeach
+            </select>
+            <button type="button" class="btn btn-success" onclick="tambahPesawat()">+</button>
         `;
         container.appendChild(newRow);
     }

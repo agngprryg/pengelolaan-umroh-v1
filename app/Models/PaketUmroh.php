@@ -9,10 +9,11 @@ class PaketUmroh extends Model
 {
     use HasFactory;
     protected $table = 'paket_umroh';
-    protected $fillable = ['jadwal_keberangkatan_id', 'nama_paket', 'tipe_kamar', 'harga', 'durasi', 'status'];
+    protected $fillable = ['jadwal_keberangkatan_id', 'nama_paket', 'tipe_kamar', 'hotel', 'pesawat', 'durasi', 'status'];
     protected $casts = [
         'tipe_kamar' => 'array',
-        'harga' => 'array'
+        'hotel' => 'array',
+        'pesawat' => 'array',
     ];
 
     public function jadwal_keberangkatan()

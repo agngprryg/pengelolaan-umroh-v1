@@ -65,6 +65,20 @@
                                     </div>
 
                                     <div class="mb-3">
+                                        <label for="hotel" class="form-label">Hotel</label>
+                                        <select id="hotel" class="form-select">
+                                            <option value="">Silahkan pilih paket umroh terlebih dahulu</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="pesawat" class="form-label">Pesawat</label>
+                                        <select id="pesawat" class="form-select">
+                                            <option value="">Silahkan pilih paket umroh terlebih dahulu</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
                                         <label for="agen" class="form-label">Agen/Rekomendator</label>
                                         <select name="agen" id="agen" class="form-select"required>
                                             <option selected disabled>-- pilih Agen --</option>
@@ -398,9 +412,12 @@
 </x-app-layout>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     $(document).ready(function() {
-        let tipeKamarData = []; // Array untuk menyimpan data tipe kamar dan harga
+        let tipeKamarData = []; // Array untuk menyimpan data tipe kamar
+        let hotelData = []; // Array untuk menyimpan data hotel
+        let pesawatData = [];
 
         $("#paket_umroh_id").change(function() {
             var paketName = $(this).val();
@@ -418,20 +435,20 @@
                         $("#tanggal_berangkat").val(data.data.jadwal_keberangkatan
                             .tanggal_berangkat);
 
-                        // Update select tipe kamar
+                        // Menyimpan data tipe kamar dan hotel untuk digunakan nanti
+                        tipeKamarData = data.data.tipe_kamar;
+                        hotelData = data.data.hotel;
+                        pesawatData = data.data.pesawat;
+
+                        // **Update Select Tipe Kamar**
                         var tipeKamarSelect = $("#tipe_kamar");
-                        tipeKamarSelect.empty();
-                        tipeKamarSelect.append(
+                        tipeKamarSelect.empty().append(
                             '<option value="">Pilih Tipe Kamar</option>');
 
-                        // Simpan data tipe kamar untuk digunakan nanti
-                        tipeKamarData = data.data.tipe_kamar;
-
-                        // Pastikan data.tipe_kamar adalah array
-                        if (Array.isArray(data.data.tipe_kamar)) {
-                            data.tipe_kamar.forEach(function(kamar) {
+                        if (Array.isArray(tipeKamarData)) {
+                            tipeKamarData.forEach(function(kamar) {
                                 tipeKamarSelect.append(
-                                    `<option value="${kamar.harga}">${kamar.nama}</option>`
+                                    `<option value="${kamar.harga}">${kamar.tipe_kamar}</option>`
                                 );
                             });
                         } else {
@@ -440,27 +457,66 @@
                             );
                         }
 
-                        // Reset harga ketika paket berubah
+                        // **Update Select Hotel**
+                        var hotelSelect = $("#hotel");
+                        hotelSelect.empty().append('<option value="">Pilih Hotel</option>');
+
+                        if (Array.isArray(hotelData)) {
+                            hotelData.forEach(function(hotel) {
+                                hotelSelect.append(
+                                    `<option value="${hotel.lama_hari}" data-nama="${hotel.nama_hotel}">${hotel.nama_hotel} - ${hotel.lokasi}</option>`
+                                );
+                            });
+                        } else {
+                            hotelSelect.append(
+                                '<option value="">Data hotel tidak tersedia</option>');
+                        }
+
+                        // **Update Select Pesawat**
+                        var pesawatSelect = $("#pesawat");
+                        pesawatSelect.empty().append(
+                            '<option value="">Pilih Pesawat</option>');
+
+                        if (Array.isArray(pesawatData)) {
+                            pesawatData.forEach(function(pesawat) {
+                                pesawatSelect.append(
+                                    `<option value="${pesawat.maskapai}" data-nama="${pesawat.maskapai}">${pesawat.maskapai} - ${pesawat.rute}</option>`
+                                );
+                            });
+                        } else {
+                            pesawatSelect.append(
+                                '<option value="">Data pesawat tidak tersedia</option>');
+                        }
+
+                        // Reset harga dan lama hari ketika paket berubah
                         $("#harga").val('');
+                        $("#lama_hari").val('');
                     }
                 });
             } else {
-                $("#jadwal_keberangkatan").val('');
-                $("#sisa_kursi").val('');
-                $("#tanggal_berangkat").val('');
-                $("#harga").val('');
+                // Reset semua input jika tidak ada paket yang dipilih
+                $("#jadwal_keberangkatan, #sisa_kursi, #tanggal_berangkat, #harga, #lama_hari").val('');
                 $("#tipe_kamar").empty().append(
                     '<option value="">Silahkan pilih Tipe Kamar terlebih dahulu</option>');
+                $("#hotel").empty().append(
+                    '<option value="">Silahkan pilih Hotel terlebih dahulu</option>');
             }
         });
 
-        // Event listener untuk select tipe kamar
+        // **Event listener untuk select tipe kamar**
         $("#tipe_kamar").change(function() {
             var selectedHarga = $(this).val();
             $("#harga").val(selectedHarga ? `Rp ${parseInt(selectedHarga).toLocaleString()}` : '');
         });
+
+        // **Event listener untuk select hotel**
+        $("#hotel").change(function() {
+            var selectedLamaHari = $(this).val();
+            $("#lama_hari").val(selectedLamaHari ? `${selectedLamaHari} Hari` : '');
+        });
     });
 </script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         let index = 1; // Index awal mulai dari 1 karena index 0 sudah ada

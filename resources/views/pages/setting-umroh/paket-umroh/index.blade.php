@@ -10,7 +10,7 @@
                     </div>
 
 
-                    <div class="container mt-5">
+                    <div class="container mt-5 table-responsive">
                         @if (session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ session('success') }}
@@ -31,6 +31,8 @@
                                     <th>Nama Paket</th>
                                     <th>Tipe Kamar</th>
                                     <th>Harga</th>
+                                    <th>Hotel</th>
+                                    <th>lokasi</th>
                                     <th>Durasi</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
@@ -43,15 +45,29 @@
                                         <td> {{ $d->nama_paket }} </td>
                                         <td>
                                             <ul>
-                                                @foreach ($d->tipe_kamar as $tipe_kamar)
-                                                    <li>{{ $tipe_kamar }}</li>
+                                                @foreach (json_decode($d->tipe_kamar) as $t)
+                                                    <li>{{ $t->tipe_kamar }}</li>
                                                 @endforeach
                                             </ul>
                                         </td>
                                         <td>
                                             <ul>
-                                                @foreach ($d->harga as $harga)
-                                                    <li>Rp. {{ number_format($harga) }}</li>
+                                                @foreach (json_decode($d->tipe_kamar) as $t)
+                                                    <li>Rp.{{ number_format($t->harga) }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                @foreach (json_decode($d->hotel) as $t)
+                                                    <li>{{ $t->nama_hotel }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                @foreach (json_decode($d->hotel) as $t)
+                                                    <li>{{ $t->lokasi }}</li>
                                                 @endforeach
                                             </ul>
                                         </td>
