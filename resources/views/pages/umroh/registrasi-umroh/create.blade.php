@@ -1,8 +1,7 @@
 <x-app-layout :assets="$assets ?? []">
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <div class="row">
         <div class="col-lg-12">
-            <div class="card   rounded">
+            <div class="card rounded">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12">
@@ -16,14 +15,14 @@
 
                             <div class="mb-2">
                                 <h4 class="mb-4">Pendaftaran Umroh Baru</h4>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="mb-3 ">
+                                <div class="row g-3">
+                                    <div class="mb-3 col-md-6 col-12 ">
                                         <label for="nomor_id" class="form-label">Nomer ID</label>
                                         <input type="text" name="nomor_id" id="nomor_id" class="form-control"
                                             value="{{ $no_id }}" readonly>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="paket_umroh_id" class="form-label">Paket Umroh</label>
                                         <select name="paket_umroh_id" id="paket_umroh_id" class="form-select" required>
                                             <option selected disabled>-- pilih paket umroh --</option>
@@ -33,52 +32,52 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3 ">
+                                    <div class="mb-3 col-md-6 col-12 ">
                                         <label for="jadwal_keberangkatan" class="form-label">Jadwal
                                             Keberangkatan</label>
                                         <input type="text" id="jadwal_keberangkatan" class="form-control" readonly
                                             placeholder="silahkan pilih paket umroh terlebih dahulu">
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="tanggal_berangkat" class="form-label">tanggal berangkat</label>
                                         <input type="date" id="tanggal_berangkat" class="form-control" readonly>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="tipe_kamar" class="form-label">Tipe Kamar</label>
                                         <select id="tipe_kamar" class="form-select">
                                             <option value="">Silahkan pilih paket umroh terlebih dahulu</option>
                                         </select>
                                     </div>
 
-                                    <div class="mb-3 ">
+                                    <div class="mb-3 col-md-6 col-12 ">
                                         <label for="harga" class="form-label">Harga</label>
                                         <input type="text" id="harga" class="form-control" readonly
                                             placeholder="silahkan pilih Tipe Kamar terlebih dahulu">
                                     </div>
 
-                                    <div class="mb-3 ">
+                                    <div class="mb-3 col-md-6 col-12 ">
                                         <label for="sisa_kursi" class="form-label">Sisa Kursi</label>
                                         <input type="text" id="sisa_kursi" class="form-control" readonly
                                             placeholder="silahkan pilih paket umroh terlebih dahulu">
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="hotel" class="form-label">Hotel</label>
                                         <select id="hotel" class="form-select">
                                             <option value="">Silahkan pilih paket umroh terlebih dahulu</option>
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="pesawat" class="form-label">Pesawat</label>
                                         <select id="pesawat" class="form-select">
                                             <option value="">Silahkan pilih paket umroh terlebih dahulu</option>
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="agen" class="form-label">Agen/Rekomendator</label>
                                         <select name="agen" id="agen" class="form-select"required>
                                             <option selected disabled>-- pilih Agen --</option>
@@ -88,7 +87,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="tanggal_pendaftaran" class="form-label">Tanggal Pendaftaran</label>
                                         <input type="date" name="tanggal_pendaftaran" id="tanggal_pendaftaran"
                                             class="form-control"required>
@@ -99,44 +98,44 @@
 
                             <div class="mb-2">
                                 <h4 class="mb-3">Data Pribadi</h4>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="mb-3">
+                                <div class="row g-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
                                         <input type="text" name="nama_lengkap" id="nama_lengkap"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="nama_passpor" class="form-label">Nama Passport</label>
                                         <input type="text" name="nama_passpor" id="nama_passpor"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="nama_ayah" class="form-label">Nama Ayah</label>
                                         <input type="text" name="nama_ayah" id="nama_ayah"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="nik" class="form-label">NIK/No KTP</label>
                                         <input type="number" name="nik" id="nik"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
                                         <input type="date" name="tanggal_lahir" id="tanggal_lahir"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
                                         <input type="text" name="tempat_lahir" id="tempat_lahir"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="kelompok_usia" class="form-label">Kelompok Usia</label>
                                         <select name="kelompok_usia" id="kelompok_usia" class="form-select"required>
                                             <option selected disabled>-- pilih kelompok usia</option>
@@ -146,13 +145,13 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="usia" class="form-label">Usia</label>
                                         <input type="number" name="usia" id="usia"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="jenis_kelamin" class="form-label">jenis_kelamin</label>
                                         <select name="jenis_kelamin" id="jenis_kelamin" class="form-select"required>
                                             <option selected disabled>-- pilih jenis kelamin --</option>
@@ -161,7 +160,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="status_pernikahan" class="form-label">Status
                                             Pernikahan</label>
                                         <select name="status_pernikahan" id="status_pernikahan"
@@ -173,13 +172,13 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="nama_mahram" class="form-label">Nama Mahram</label>
                                         <input type="text" name="nama_mahram" id="nama_mahram"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="status_mahram" class="form-label">Status
                                             Mahram</label>
                                         <select name="status_mahram" id="status_mahram" class="form-select"required>
@@ -195,65 +194,65 @@
 
                             <div class="mt-5">
                                 <h4 class="mb-3">Passpor</h4>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="mb-3">
+                                <div class="row g-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="no_passpor" class="form-label">No Passpor</label>
                                         <input type="number" name="no_passpor" id="no_passpor"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="tanggal_dikeluarkan" class="form-label">Tanggal
                                             Dikeluarkan</label>
                                         <input type="date" name="tanggal_dikeluarkan" id="tanggal_dikeluarkan"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="kota_passpor_dikeluarkan" class="form-label">Kota Passpor
                                             Dikeluarkan</label>
                                         <input type="text" name="kota_passpor_dikeluarkan"
                                             id="kota_passpor_dikeluarkan" class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="tanggal_akhir_berlakunya" class="form-label">Tanggal
                                             Akhir Berlakunya</label>
                                         <input type="date" name="tanggal_akhir_berlakunya"
                                             id="tanggal_akhir_berlakunya" class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="no_telepon" class="form-label">No telepon</label>
                                         <input type="number" name="no_telepon" id="no_telepon"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="handphone" class="form-label">HandPhone</label>
                                         <input type="text" name="handphone" id="handphone"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="kecamatan" class="form-label">kecamatan</label>
                                         <input type="text" name="kecamatan" id="kecamatan"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="email" class="form-label">email</label>
                                         <input type="email" name="email" id="email"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="pekerjaan" class="form-label">pekerjaan</label>
                                         <input type="text" name="pekerjaan" id="pekerjaan"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="pendidikan" class="form-label">Pendidikan Teakhir</label>
                                         <select name="pendidikan_terakhir" id="pendidikan_terakhir"
                                             class="form-select"required>
@@ -266,7 +265,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="pernah_pergi_umroh" class="form-label">Pernah Pergi Umroh</label>
                                         <select name="pernah_pergi_umroh" id="pernah_pergi_umroh"
                                             class="form-select"required>
@@ -276,7 +275,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="pernah_pergi_haji" class="form-label">Pernah Pergi Haji</label>
                                         <select name="pernah_pergi_haji" id="pernah_pergi_haji"
                                             class="form-select"required>
@@ -286,25 +285,25 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="kelurahan" class="form-label">kelurahan</label>
                                         <input type="text" name="kelurahan" id="kelurahan"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="kode_pos" class="form-label">kode pos</label>
                                         <input type="number" name="kode_pos" id="kode_pos"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="alamat_rumah" class="form-label">Alamat Rumah</label>
                                         <input type="text" name="alamat_rumah" id="alamat_rumah"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="merokok" class="form-label">Merokok</label>
                                         <select name="merokok" id="merokok" class="form-select"required>
                                             <option selected disabled>-- pilih Satu --</option>
@@ -313,7 +312,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="memiliki_penyakit_khusus" class="form-label">Memiliki Penyakit
                                             Khusus</label>
                                         <select name="memiliki_penyakit_khusus" id="memiliki_penyakit_khusus"
@@ -324,13 +323,13 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="penyakit" class="form-label">Masukan Penyakit</label>
                                         <input type="text" name="penyakit" id="penyakit"
                                             class="form-control"required>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="apakah_perlu_penanganan_khusus" class="form-label">Apakah Perlu
                                             Penanganan Khusus</label>
                                         <select name="apakah_perlu_penanganan_khusus"
@@ -341,7 +340,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="fasilitas_kursi_roda" class="form-label">Fasilitas Kursi
                                             Roda</label>
                                         <select name="fasilitas_kursi_roda" id="fasilitas_kursi_roda"
@@ -353,7 +352,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-md-6 col-12">
                                         <label for="foto" class="form-label">foto</label>
                                         <input type="file" name="foto" id="foto" class="form-control"
                                             accept="image/*">
@@ -376,7 +375,7 @@
                             </div>
 
                             <div id="dynamic-field">
-                                <div class="mb-3 flex items-end gap-2">
+                                <div class="mb-3 d-flex align-items-end gap-2">
                                     <div>
                                         <label for="perlengkapan_umroh" class="form-label">Perlengkapan Umroh</label>
                                         <select name="perlengkapan_umroh[0][nama_barang]" class="form-select"
@@ -390,14 +389,14 @@
                                     </div>
                                     <div>
                                         <label class="form-label">Jumlah</label>
-                                        <input type="number" class="w-50 form-control"
+                                        <input type="number" class="form-control w-75"
                                             name="perlengkapan_umroh[0][jumlah_barang]" required>
                                     </div>
-                                    <button type="button" class="btn btn-danger remove-field"
-                                        style="display: none;">Hapus</button>
+                                    <button type="button" class="btn btn-danger remove-field d-none">Hapus</button>
                                     <button type="button" class="btn btn-primary mt-2"
                                         id="add-field">Tambah</button>
                                 </div>
+
                             </div>
 
                             <button type="submit" class="btn btn-primary">Simpan</button>
@@ -519,31 +518,34 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        let index = 1; // Index awal mulai dari 1 karena index 0 sudah ada
+        let index = 1; // Mulai index dari 1 karena index 0 sudah ada
+
         document.getElementById("add-field").addEventListener("click", function() {
             const container = document.getElementById("dynamic-field");
             const newField = document.createElement("div");
-            newField.classList.add("mb-3", "flex", "items-end", "gap-2");
+            newField.classList.add("mb-3", "d-flex", "align-items-end", "gap-2");
+
             newField.innerHTML = `
-            <div>
-                <label class="form-label">Perlengkapan Umroh</label>
-                <select name="perlengkapan_umroh[${index}][nama_barang]" class="form-select" required>
-                    <option selected disabled>-- Pilih Satu --</option>
-                    @foreach ($data_perlengkapan as $d)
-                        <option value="{{ $d->nama_barang }}">Nama: {{ $d->nama_barang }} | Stok: {{ $d->stok }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div>
-                <label class="form-label">Jumlah</label>
-                <input type="number" class="w-50 form-control" name="perlengkapan_umroh[${index}][jumlah_barang]" required>
-            </div>
-            <button type="button" class="btn btn-danger remove-field">Hapus</button>
-        `;
+                <div>
+                    <label class="form-label">Perlengkapan Umroh</label>
+                    <select name="perlengkapan_umroh[${index}][nama_barang]" class="form-select" required>
+                        <option selected disabled>-- Pilih Satu --</option>
+                        @foreach ($data_perlengkapan as $d)
+                            <option value="{{ $d->nama_barang }}">Nama: {{ $d->nama_barang }} | Stok: {{ $d->stok }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">Jumlah</label>
+                    <input type="number" class="form-control w-75" name="perlengkapan_umroh[${index}][jumlah_barang]" required>
+                </div>
+                <button type="button" class="btn btn-danger remove-field">Hapus</button>
+            `;
+
             container.appendChild(newField);
             index++;
 
-            // Tambahkan event listener untuk tombol hapus
+            // Event listener untuk tombol hapus
             newField.querySelector(".remove-field").addEventListener("click", function() {
                 newField.remove();
                 reindexFields();
