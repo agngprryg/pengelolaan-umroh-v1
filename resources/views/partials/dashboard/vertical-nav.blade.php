@@ -159,9 +159,7 @@
                     <span class="item-name">Stok Pusat</span>
                 </a>
             </li>
-        </ul>
 
-        <ul class="sub-nav collapse" id="sidebar-inventory">
             <li class="nav-item">
                 <a class="nav-link {{ activeRoute(route('stok-cabang')) }}" href="{{ route('stok-cabang') }}">
                     <i class="icon">
