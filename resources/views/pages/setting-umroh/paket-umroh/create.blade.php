@@ -100,6 +100,22 @@
                                 </select>
                             </div>
 
+                            <div id="kelengkapan_umroh" class="mb-3">
+                                <label for="status" class="form-label">Kelengkapan Umroh</label>
+                                <div class="mb-3 d-flex gap-4">
+                                    <select type="text" name="kelengkapan_umroh[]" class="form-select" required>
+                                        <option selected disabled>-- pilih Kelengkapan Umroh --</option>
+                                        @foreach ($kelengkapan_umroh as $k)
+                                            <option value="{{ $k->id }}">
+                                                {{ $k->perlengkapan_umroh->nama_barang }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <button type="button" class="btn btn-success" onclick="tambahBarang()">+</button>
+                                </div>
+
+                            </div>
+
 
 
                             <div class="mb-3">
@@ -188,6 +204,25 @@
                 @endforeach
             </select>
             <button type="button" class="btn btn-success" onclick="tambahPesawat()">+</button>
+        `;
+        container.appendChild(newRow);
+    }
+
+    function tambahBarang() {
+        let container = document.getElementById("kelengkapan_umroh");
+        let newRow = document.createElement("div");
+        newRow.classList.add("w-100", "mb-3", "d-flex", "gap-3");
+        newRow.innerHTML = `
+            <select type="text" name="kelengkapan_umroh[]"  class="form-select"
+                                        required>
+                                        <option selected disabled>-- pilih Kelengkapan Umroh --</option>
+                                        @foreach ($kelengkapan_umroh as $k)
+                                            <option value="{{ $k->id }}">
+                                                {{ $k->perlengkapan_umroh->nama_barang }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <button type="button" class="btn btn-success" onclick="tambahBarang()">+</button>
         `;
         container.appendChild(newRow);
     }

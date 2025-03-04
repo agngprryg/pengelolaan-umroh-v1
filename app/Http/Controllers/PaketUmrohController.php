@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DataPengguna;
 use App\Models\JadwalKeberangkatan;
 use App\Models\JenisOpsi;
+use App\Models\KelengkapanUmroh;
 use App\Models\PaketUmroh;
 use App\Models\SettingHotel;
 use App\Models\SettingPesawat;
@@ -40,8 +41,9 @@ class PaketUmrohController extends Controller
         $hotels = SettingHotel::all();
         $maskapai = SettingPesawat::pluck('nama_maskapai');
         $rute = SettingPesawat::pluck('rute');
+        $kelengkapan_umroh = KelengkapanUmroh::all();
         // return response($rute);
-        return view('pages.setting-umroh.paket-umroh.create', compact('tipe_kamar', 'jadwal_keberangkatan', 'hotels', 'maskapai', 'rute'));
+        return view('pages.setting-umroh.paket-umroh.create', compact('tipe_kamar', 'jadwal_keberangkatan', 'hotels', 'maskapai', 'rute', 'kelengkapan_umroh'));
     }
 
     public function store(Request $request)
@@ -63,37 +65,39 @@ class PaketUmrohController extends Controller
         foreach ($request->tipe_kamar as $key => $tipe) {
             $tipeKamarData[] = [
                 'tipe_kamar' => $tipe,
-                'harga' => $request->harga[$key]
+                'harga' => $request->harga[$key] ?? 0  // Gunakan 0 jika tidak ada harga
             ];
         }
 
         // Menggabungkan hotel, lokasi, dan lama hari
         $hotelData = [];
-        for ($i = 0; $i < count($request->hotel) / 2; $i++) {
+        for ($i = 0; $i < floor(count($request->hotel) / 2); $i++) { // floor() untuk menghindari indeks tidak valid
             $hotelData[] = [
-                'lokasi' => $request->hotel[$i * 2],
-                'nama_hotel' => $request->hotel[$i * 2 + 1],
-                'lama_hari' => $request->lama_hari[$i],
+                'lokasi' => $request->hotel[$i * 2] ?? '',
+                'nama_hotel' => $request->hotel[$i * 2 + 1] ?? '',
+                'lama_hari' => $request->lama_hari[$i] ?? 0,
             ];
         }
 
         // Menggabungkan pesawat dan rute
         $pesawatData = [];
-        for ($i = 0; $i < count($request->pesawat) / 2; $i++) {
+        for ($i = 0; $i < floor(count($request->pesawat) / 2); $i++) {
             $pesawatData[] = [
-                'maskapai' => $request->pesawat[$i * 2],
-                'rute' => $request->pesawat[$i * 2 + 1]
+                'maskapai' => $request->pesawat[$i * 2] ?? '',
+                'rute' => $request->pesawat[$i * 2 + 1] ?? ''
             ];
         }
+
 
         // Simpan data ke database
         $paket = PaketUmroh::create([
             'nama_paket' => $request->nama_paket,
             'durasi' => $request->durasi,
-            'harga' => $request->harga,
+            'harga' => json_encode($request->harga),
             'tipe_kamar' => json_encode($tipeKamarData),
             'hotel' => json_encode($hotelData),
             'pesawat' => json_encode($pesawatData),
+            'kelengkapan_umroh' => json_encode($request->kelengkapan_umroh),
             'jadwal_keberangkatan_id' => $request->jadwal_keberangkatan_id,
             'status' => $request->status,
         ]);
