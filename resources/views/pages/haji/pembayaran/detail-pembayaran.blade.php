@@ -27,7 +27,6 @@
                                     <th>Jumlah Bayar</th>
                                     <th>Sisa Pembayaran</th>
                                     <th>Keterangan Pembayaran</th>
-                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,10 +37,6 @@
                                         <td>Rp. {{ number_format($d->jumlah_uang) }} </td>
                                         <td>Rp. {{ number_format($d->sisa_pembayaran) }} </td>
                                         <td> {{ $d->tujuan_pembayaran }} </td>
-                                        <td>
-                                            <a href="{{ route('data-agen.show', $d->id) }}"
-                                                class="btn btn-warning btn-sm">Detail</a>
-                                        </td>
                                     </tr>
                                 @endforeach
 
