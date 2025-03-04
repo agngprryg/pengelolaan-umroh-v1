@@ -29,7 +29,9 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nama Hotel</th>
-                                    <th>Harga Perhari</th>
+                                    <th>Harga Quad</th>
+                                    <th>Harga Triple</th>
+                                    <th>Harga Double</th>
                                     <th>Lokasi Hotel</th>
                                     <th>Keterangan</th>
                                     <th>Aksi</th>
@@ -40,7 +42,9 @@
                                     <tr>
                                         <td> {{ $loop->iteration }} </td>
                                         <td> {{ $d->nama_hotel }} </td>
-                                        <td> {{ $d->harga }} </td>
+                                        <td> Rp.{{ number_format($d->harga_quad) }} </td>
+                                        <td> Rp.{{ number_format($d->harga_triple) }} </td>
+                                        <td> Rp.{{ number_format($d->harga_double) }} </td>
                                         <td> {{ $d->lokasi }} </td>
                                         <td> {{ $d->keterangan }} </td>
                                         <td>

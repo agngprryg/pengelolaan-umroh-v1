@@ -21,9 +21,21 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="harga" class="form-label">Harga Perhari</label>
-                                <input type="number" name="harga" id="harga" class="form-control"
-                                    value="{{ $data->harga }}" required>
+                                <label for="harga" class="form-label">Harga Quad</label>
+                                <input type="number" name="harga_quad" id="harga_quad" class="form-control"
+                                    value="{{ $data->harga_quad }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="harga" class="form-label">Harga Triple</label>
+                                <input type="number" name="harga_triple" id="harga_triple" class="form-control"
+                                    value="{{ $data->harga_triple }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="harga" class="form-label">Harga Double</label>
+                                <input type="number" name="harga_double" id="harga_double" class="form-control"
+                                    value="{{ $data->harga_double }}" required>
                             </div>
 
                             <div class="mb-3">

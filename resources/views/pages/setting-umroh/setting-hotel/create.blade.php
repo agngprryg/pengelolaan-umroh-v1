@@ -19,13 +19,25 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="harga" class="form-label">Harga Perhari</label>
-                                <input type="number" name="harga" id="harga" class="form-control" required>
+                                <label for="lokasi" class="form-label">Lokasi Hotel</label>
+                                <input type="text" name="lokasi" id="lokasi" class="form-control" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="lokasi" class="form-label">Lokasi Hotel</label>
-                                <input type="text" name="lokasi" id="lokasi" class="form-control" required>
+                                <label for="harga" class="form-label">Harga Quad</label>
+                                <input type="number" name="harga_quad" id="harga_quad" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="harga" class="form-label">Harga Triple</label>
+                                <input type="number" name="harga_triple" id="harga_triple" class="form-control"
+                                    required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="harga" class="form-label">Harga Double</label>
+                                <input type="number" name="harga_double" id="harga_double" class="form-control"
+                                    required>
                             </div>
 
                             <div class="mb-3">

@@ -9,5 +9,5 @@ class SettingHotel extends Model
 {
     use HasFactory;
     protected $table = 'setting_hotel';
-    protected $fillable = ['nama_hotel', 'harga', 'lokasi', 'keterangan'];
+    protected $fillable = ['nama_hotel', 'harga_quad', 'harga_triple', 'harga_double', 'lokasi', 'keterangan'];
 }
