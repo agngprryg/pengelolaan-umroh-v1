@@ -27,4 +27,9 @@ class PaketUmroh extends Model
     {
         return $this->hasMany(RegistrasiUmroh::class, 'paket_umroh_id');
     }
+
+    public function registrasi_umroh_new()
+    {
+        return $this->hasMany(RegistrasiUmroh::class, 'paket_umroh_id');
+    }
 }

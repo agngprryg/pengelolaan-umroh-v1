@@ -22,6 +22,7 @@ use App\Http\Controllers\PaketUmrohController;
 use App\Http\Controllers\PembayaranHajiController;
 use App\Http\Controllers\RegistrasiHajiController;
 use App\Http\Controllers\RegistrasiUmrohController;
+use App\Http\Controllers\RegistrasiUmrohNewController;
 use App\Http\Controllers\RekeningBankController;
 use App\Http\Controllers\Security\RolePermission;
 use App\Http\Controllers\Security\RoleController;
@@ -120,7 +121,9 @@ Route::prefix('haji')->group(function () {
 
 Route::prefix('umroh')->group(function () {
     Route::resource('registrasi-umroh', RegistrasiUmrohController::class);
-    Route::get('/get-paket-id/{id}', [RegistrasiUmrohController::class, 'get_paket_by_id']);
+    Route::resource('registrasi-umroh-new', RegistrasiUmrohNewController::class);
+    // Route::get('/get-paket-id/{id}', [RegistrasiUmrohController::class, 'get_paket_by_id']);
+    Route::get('/get-paket-id/{id}', [RegistrasiUmrohNewController::class, 'get_paket_by_id']);
 });
 
 
